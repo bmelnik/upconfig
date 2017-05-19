@@ -18,6 +18,8 @@ def unTar():
     return content
 
 
+## Change number 1
+
 startConfig = unTar().split("!Device Configuration")[1]
 config = startConfig.split("------------")[0]  # cutting the Configuration out of the support file.
 
