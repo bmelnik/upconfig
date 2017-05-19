@@ -1,0 +1,1653 @@
+
+!Date: 21-04-2017 09:47:15 
+!DeviceDescription: DP-20420-NL-D-QZ
+!Base MAC Address: 00:03:b2:e0:29:c0
+!Software Version: 7.42.05 (Build date Sep 15 2016 15:14:02, Build#75)
+!APSolute OS Version: 10.70-42.05(1):7.42.05
+!Configuration Type: regular
+!
+
+!
+! The following commands will take effect only
+! once the device has been rebooted!
+!
+
+dp reporting packet-report status set enable
+manage snmp versions-after-reset set "v1 & v2c & v3"
+system tune syn-protection syn-protection set 300000
+system tune syn-protection requests set 300000
+system tune syn-protection syn-flood-detect set 20000
+system tune syn-protection statistics-table set 20000
+system tune security cntr-target-table set 65536
+system tune security cntr-src-targt-table set 65536
+system tune security cntr-dhcp-table set 100
+system tune security cntr-source-table set 65536
+system tune security user-attacks-max set 3000
+system tune security suspend-table-size set 10000
+system tune security behavioral-dos policies set 100
+device ip-version mode set ipv4and6
+system tune security ncpf-size set 10000
+system tune security cntr-cracking-table set 200
+system tune security cntr-reports-size set 20000
+dp http-mitigator global status set enable
+system tune security server-protection set 350
+system tune security httpf-suspect-src set 100000
+device tunneling inspect gre set Disabled
+device tunneling inspect gtp set Disabled
+device tunneling inspect l2tp set Disabled
+device tunneling inspect l2 set Enabled
+device tunneling inspect ipinip set Disabled
+dp dns-protection global status set enable
+
+!
+! The following commands take effect immediately
+! upon execution!
+!
+
+
+net ip-interface create 10.10.10.10 16 25
+net route table create 0.0.0.0 0.0.0.0 20.2.2.2 -i 25
+device static-forwarding-table setCreate 1 -dst 2 -op Process
+device static-forwarding-table setCreate 2 -dst 1 -op Process -t \
+Destination
+device static-forwarding-table setCreate 3 -dst 4 -op Process
+device static-forwarding-table setCreate 4 -dst 3 -op Process -t \
+Destination
+device static-forwarding-table setCreate 5 -dst 6 -op Process
+device static-forwarding-table setCreate 6 -dst 5 -op Process -t \
+Destination
+device static-forwarding-table setCreate 7 -dst 8 -op Process
+device static-forwarding-table setCreate 8 -dst 7 -op Process -t \
+Destination
+device static-forwarding-table setCreate 9 -dst 10 -op Process
+device static-forwarding-table setCreate 10 -dst 9 -op Process -t \
+Destination
+device static-forwarding-table setCreate 11 -dst 12 -op Process
+device static-forwarding-table setCreate 12 -dst 11 -op Process -t \
+Destination
+device static-forwarding-table setCreate 13 -dst 14 -op Process
+device static-forwarding-table setCreate 14 -dst 13 -op Process -t \
+Destination
+device static-forwarding-table setCreate 15 -dst 16 -op Process
+device static-forwarding-table setCreate 16 -dst 15 -op Process -t \
+Destination
+device static-forwarding-table setCreate 17 -dst 18 -op Process
+device static-forwarding-table setCreate 18 -dst 17 -op Process -t \
+Destination
+device static-forwarding-table setCreate 19 -dst 20 -op Process
+device static-forwarding-table setCreate 20 -dst 19 -op Process -t \
+Destination
+device static-forwarding-table setCreate 21 -dst 22 -op Process
+device static-forwarding-table setCreate 22 -dst 21 -op Process -t \
+Destination
+classes modify application-port-groups create ftp 21 21
+classes modify application-port-groups create ssh 22 22
+classes modify application-port-groups create telnet 23 23
+classes modify application-port-groups create smtp 25 25
+classes modify application-port-groups create dns 53 53
+classes modify application-port-groups create http 80 80
+classes modify application-port-groups create pop3 110 110
+classes modify application-port-groups create sunrpc 111 111
+classes modify application-port-groups create ntp 123 123
+classes modify application-port-groups create imap 143 143
+classes modify application-port-groups create snmp 161 161
+classes modify application-port-groups create https 443 443
+classes modify application-port-groups create ms-sql-s 1433 1433
+classes modify application-port-groups create ms-sql-m 1434 1434
+classes modify application-port-groups create sip 5060 5060
+classes modify application-port-groups create http 8080 8080
+classes modify application-port-groups create rshell 514 514
+classes modify application-port-groups create rexec 512 512
+classes modify application-port-groups create tftp 69 69
+classes modify application-port-groups create h225 1720 1720
+classes modify application-port-groups create dcerpc 135 135
+classes modify application-port-groups create dcerpc 139 139
+classes modify application-port-groups create dcerpc 445 445
+classes modify application-port-groups create rtsp 554 554
+classes modify application-port-groups create radius 1645 1646
+classes modify application-port-groups create radius 1812 1813
+classes modify application-port-groups create smtp 587 587
+classes modify application-port-groups create All_TCP_Ports 9 65500
+classes modify application-port-groups create DirectAdmin 2222 2222
+classes modify application-port-groups create http_8080_1 8080 8081
+classes modify application-port-groups create TCPReset-ACK 0 0
+classes modify application-port-groups create TCPReset-Data 0 0
+classes modify application-port-groups create PORTS_UP_TO_53 1 52
+classes modify application-port-groups create PORTS_FROM_53_UP_TO 54\
+ 65535
+classes modify application-port-groups create PORTS_FROM_1_TO_24 1 24
+classes modify application-port-groups create PORTS_FROM_26_TO_79 26 79
+classes modify application-port-groups create PORTS_FROM_81_TO_442 81 442
+classes modify application-port-groups create PORTS_FROM_444_TO_65535 444\
+ 65535
+classes modify application-port-groups create PORTS_FROM_1_TO_53 1 53
+classes modify application-port-groups create PORTS_FROM_55_TO_65535 55\
+ 65535
+classes modify application-port-groups create PORTS_FROM_1_TO_442 1 442
+classes modify application-port-groups create UDP_53 53 53
+net arp proxy set enable
+dp reporting packet-report address set 10.100.64.145
+services bootp-relay server-address set 0.0.0.0
+services bootp-relay threshold set 0
+system mib2-contact set "SE Infostruktura, noc@infostruktura.lt"
+system mib2-name set DefensePro_x420
+system mib2-location set "Savanoriu 28, Vilnius"
+device interface-grouping set Enabled
+classes modify network create ALL-NET-IPV6 1 -a 2400:4c20:: -s 32 -f \
+2400:4c20:: -t 2400:4c20:ffff:ffff:ffff:ffff:ffff:ffff -m "IP Mask"
+classes modify network create ALL_NET_Instance_0 23 -a 195.182.64.0 -s \
+20 -f 195.182.64.0 -t 195.182.79.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 29 -a 195.182.80.0 -s \
+20 -f 195.182.80.0 -t 195.182.95.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 30 -a 91.103.96.0 -s 21 \
+-f 91.103.96.0 -t 91.103.103.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 31 -a 91.198.17.0 -s 24 \
+-f 91.198.17.0 -t 91.198.17.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 32 -a 91.199.55.0 -s 24 \
+-f 91.199.55.0 -t 91.199.55.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 33 -a 109.205.232.0 -s \
+21 -f 109.205.232.0 -t 109.205.239.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 34 -a 176.117.61.0 -s \
+24 -f 176.117.61.0 -t 176.117.61.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 35 -a 185.127.0.0 -s 22 \
+-f 185.127.0.0 -t 185.127.3.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 36 -a 193.41.81.0 -s 24 \
+-f 193.41.81.0 -t 193.41.81.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 37 -a 193.219.10.0 -s \
+23 -f 193.219.10.0 -t 193.219.11.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 38 -a 193.219.12.0 -s \
+23 -f 193.219.12.0 -t 193.219.13.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 39 -a 193.219.14.0 -s \
+24 -f 193.219.14.0 -t 193.219.14.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 40 -a 195.12.184.0 -s \
+23 -f 195.12.184.0 -t 195.12.185.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 41 -a 195.22.173.0 -s \
+24 -f 195.22.173.0 -t 195.22.173.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 42 -a 195.170.181.0 -s \
+24 -f 195.170.181.0 -t 195.170.181.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 43 -a 154.46.99.0 -s 24 \
+-f 154.46.99.0 -t 154.46.99.255 -m "IP Mask"
+classes modify network create ALL_NET_Instance_1 44 -a 154.46.98.0 -s 24 \
+-f 154.46.98.0 -t 154.46.98.255 -m "IP Mask"
+classes modify network create NET_LRP 0 -a 195.182.64.0 -s 28 -f \
+195.182.64.0 -t 195.182.64.15 -m "IP Mask"
+classes modify network create NET_IVPK 1 -a 195.182.68.184 -s 29 -f \
+195.182.68.184 -t 195.182.68.191 -m "IP Mask"
+classes modify network create NET_IVPK 2 -a 195.182.80.32 -s 29 -f \
+195.182.80.32 -t 195.182.80.39 -m "IP Mask"
+classes modify network create NET_IVPK 3 -a 195.182.78.0 -s 24 -f \
+195.182.78.0 -t 195.182.78.255 -m "IP Mask"
+classes modify network create NET_KAUN_SAV 1 -a 195.182.72.64 -s 27 -f \
+195.182.72.64 -t 195.182.72.95 -m "IP Mask"
+classes modify network create NET_KAUN_SAV 2 -a 195.182.73.64 -s 26 -f \
+195.182.73.64 -t 195.182.73.127 -m "IP Mask"
+classes modify network create NET_KAM 1 -a 193.219.11.192 -s 26 -f \
+193.219.11.192 -t 193.219.11.255 -m "IP Mask"
+classes modify network create NET_KAM 2 -a 193.219.13.0 -s 30 -f \
+193.219.13.0 -t 193.219.13.3 -m "IP Mask"
+classes modify network create NET_KAM 3 -a 193.219.11.112 -s 29 -f \
+193.219.11.112 -t 193.219.11.119 -m "IP Mask"
+classes modify network create NET_KAM 4 -a 195.182.75.0 -s 28 -f \
+195.182.75.0 -t 195.182.75.15 -m "IP Mask"
+classes modify network create NET_FINMIN 1 -a 195.182.66.80 -s 28 -f \
+195.182.66.80 -t 195.182.66.95 -m "IP Mask"
+classes modify network create NET_FINMIN 2 -a 195.182.79.224 -s 27 -f \
+195.182.79.224 -t 195.182.79.255 -m "IP Mask"
+classes modify network create NET_FINMIN 3 -a 195.182.91.96 -s 28 -f \
+195.182.91.96 -t 195.182.91.111 -m "IP Mask"
+classes modify network create NET_FINMIN 4 -a 195.182.66.64 -s 28 -f \
+195.182.66.64 -t 195.182.66.79 -m "IP Mask"
+classes modify network create NET_KULTMIN 1 -a 195.182.67.192 -s 27 -f \
+195.182.67.192 -t 195.182.67.223 -m "IP Mask"
+classes modify network create NET_RRT 1 -a 195.182.80.128 -s 28 -f \
+195.182.80.128 -t 195.182.80.143 -m "IP Mask"
+classes modify network create NET_RRT 2 -a 195.182.72.224 -s 28 -f \
+195.182.72.224 -t 195.182.72.239 -m "IP Mask"
+classes modify network create NET_STT 1 -a 193.219.12.32 -s 29 -f \
+193.219.12.32 -t 193.219.12.39 -m "IP Mask"
+classes modify network create NET_TEISMIN 1 -a 195.182.68.224 -s 29 -f \
+195.182.68.224 -t 195.182.68.231 -m "IP Mask"
+classes modify network create NET_TEISMIN 2 -a 195.182.86.96 -s 28 -f \
+195.182.86.96 -t 195.182.86.111 -m "IP Mask"
+classes modify network create NET_UKMIN 1 -a 195.182.67.0 -s 26 -f \
+195.182.67.0 -t 195.182.67.63 -m "IP Mask"
+classes modify network create NET_LRVK 1 -a 195.182.70.128 -s 26 -f \
+195.182.70.128 -t 195.182.70.191 -m "IP Mask"
+classes modify network create NET_LRVK 2 -a 195.182.70.192 -s 26 -f \
+195.182.70.192 -t 195.182.70.255 -m "IP Mask"
+classes modify network create NET_LRVK 3 -a 193.219.11.16 -s 28 -f \
+193.219.11.16 -t 193.219.11.31 -m "IP Mask"
+classes modify network create NET_LRVK 4 -a 195.182.70.104 -s 29 -f \
+195.182.70.104 -t 195.182.70.111 -m "IP Mask"
+classes modify network create NET_ZUM 1 -a 195.182.65.0 -s 24 -f \
+195.182.65.0 -t 195.182.65.255 -m "IP Mask"
+classes modify network create NET_ZT_ZUM 1 -a 195.182.89.208 -s 29 -f \
+195.182.89.208 -t 195.182.89.215 -m "IP Mask"
+classes modify network create NET_PROKURATURA 1 -a 195.182.75.248 -s 30 \
+-f 195.182.75.248 -t 195.182.75.251 -m "IP Mask"
+classes modify network create NET_PROKURATURA 2 -a 195.182.75.252 -s 30 \
+-f 195.182.75.252 -t 195.182.75.255 -m "IP Mask"
+classes modify network create NET_PROKURATURA 3 -a 195.182.92.32 -s 27 -f \
+195.182.92.32 -t 195.182.92.63 -m "IP Mask"
+classes modify network create NET_SADM 1 -a 195.182.69.16 -s 28 -f \
+195.182.69.16 -t 195.182.69.31 -m "IP Mask"
+classes modify network create NET_SADM 2 -a 195.182.69.0 -s 28 -f \
+195.182.69.0 -t 195.182.69.15 -m "IP Mask"
+classes modify network create NET_SADM 3 -a 195.182.85.160 -s 27 -f \
+195.182.85.160 -t 195.182.85.191 -m "IP Mask"
+classes modify network create NET_SUMIN 1 -a 195.182.67.160 -s 27 -f \
+195.182.67.160 -t 195.182.67.191 -m "IP Mask"
+classes modify network create NET_SUMIN 2 -a 195.182.67.152 -s 29 -f \
+195.182.67.152 -t 195.182.67.159 -m "IP Mask"
+classes modify network create NET_SAM 1 -a 195.182.66.128 -s 26 -f \
+195.182.66.128 -t 195.182.66.191 -m "IP Mask"
+classes modify network create NET_VKONTROLE 1 -a 195.182.66.0 -s 29 -f \
+195.182.66.0 -t 195.182.66.7 -m "IP Mask"
+classes modify network create NET_NMA 1 -a 195.182.89.136 -s 30 -f \
+195.182.89.136 -t 195.182.89.139 -m "IP Mask"
+classes modify network create NET_NMA 2 -a 195.182.71.136 -s 29 -f \
+195.182.71.136 -t 195.182.71.143 -m "IP Mask"
+classes modify network create NET_NMA 3 -a 195.182.71.40 -s 30 -f \
+195.182.71.40 -t 195.182.71.43 -m "IP Mask"
+classes modify network create NET_NMA 4 -a 195.182.72.48 -s 28 -f \
+195.182.72.48 -t 195.182.72.63 -m "IP Mask"
+classes modify network create NET_HIGINS 1 -a 195.182.86.16 -s 28 -f \
+195.182.86.16 -t 195.182.86.31 -m "IP Mask"
+classes modify network create NET_SIAU_SAV 1 -a 195.182.80.0 -s 28 -f \
+195.182.80.0 -t 195.182.80.15 -m "IP Mask"
+classes modify network create NET_SIAU_SAV 2 -a 195.182.80.40 -s 29 -f \
+195.182.80.40 -t 195.182.80.47 -m "IP Mask"
+classes modify network create NET_PANE_SAV 1 -a 195.182.86.144 -s 28 -f \
+195.182.86.144 -t 195.182.86.159 -m "IP Mask"
+classes modify network create NET_PANE_SAV 2 -a 195.182.88.224 -s 28 -f \
+195.182.88.224 -t 195.182.88.239 -m "IP Mask"
+classes modify network create NET_GIS 1 -a 195.182.72.144 -s 28 -f \
+195.182.72.144 -t 195.182.72.159 -m "IP Mask"
+classes modify network create NET_PANE_RSAV 1 -a 195.182.71.144 -s 28 -f \
+195.182.71.144 -t 195.182.71.159 -m "IP Mask"
+classes modify network create NET_PANE_RSAV 2 -a 195.182.84.208 -s 28 -f \
+195.182.84.208 -t 195.182.84.223 -m "IP Mask"
+classes modify network create NET_SIRV_RSAV 1 -a 195.182.85.64 -s 28 -f \
+195.182.85.64 -t 195.182.85.79 -m "IP Mask"
+classes modify network create NET_UTEN_RSAV 1 -a 193.219.12.8 -s 29 -f \
+193.219.12.8 -t 193.219.12.15 -m "IP Mask"
+classes modify network create NET_VPT 1 -a 195.182.64.232 -s 29 -f \
+195.182.64.232 -t 195.182.64.239 -m "IP Mask"
+classes modify network create NET_VPT 2 -a 195.182.64.248 -s 29 -f \
+195.182.64.248 -t 195.182.64.255 -m "IP Mask"
+classes modify network create NET_VILN_SAV 1 -a 195.182.69.64 -s 29 -f \
+195.182.69.64 -t 195.182.69.71 -m "IP Mask"
+classes modify network create NET_VILN_SAV 2 -a 195.182.82.64 -s 27 -f \
+195.182.82.64 -t 195.182.82.95 -m "IP Mask"
+classes modify network create NET_KAUN_RSAV 1 -a 195.182.94.64 -s 28 -f \
+195.182.94.64 -t 195.182.94.79 -m "IP Mask"
+classes modify network create NET_NDNT 1 -a 195.182.92.80 -s 29 -f \
+195.182.92.80 -t 195.182.92.87 -m "IP Mask"
+classes modify network create NET_NDNT 2 -a 195.182.84.8 -s 29 -f \
+195.182.84.8 -t 195.182.84.15 -m "IP Mask"
+classes modify network create NET_VDTAT 1 -a 195.182.69.232 -s 29 -f \
+195.182.69.232 -t 195.182.69.239 -m "IP Mask"
+classes modify network create NET_VKEEK 1 -a 193.219.13.160 -s 27 -f \
+193.219.13.160 -t 193.219.13.191 -m "IP Mask"
+classes modify network create NET_VKEEK 2 -a 193.219.13.192 -s 27 -f \
+193.219.13.192 -t 193.219.13.223 -m "IP Mask"
+classes modify network create NET_NTA 1 -a 195.182.93.192 -s 27 -f \
+195.182.93.192 -t 195.182.93.223 -m "IP Mask"
+classes modify network create NET_NTA 2 -a 195.182.69.104 -s 30 -f \
+195.182.69.104 -t 195.182.69.107 -m "IP Mask"
+classes modify network create NET_NTA 3 -a 195.182.69.100 -s 30 -f \
+195.182.69.100 -t 195.182.69.103 -m "IP Mask"
+classes modify network create NET_FILHARM 1 -a 195.182.69.56 -s 29 -f \
+195.182.69.56 -t 195.182.69.63 -m "IP Mask"
+classes modify network create NET_FILHARM 2 -a 195.182.88.48 -s 28 -f \
+195.182.88.48 -t 195.182.88.63 -m "IP Mask"
+classes modify network create NET_URM 1 -a 195.22.173.0 -s 24 -f \
+195.22.173.0 -t 195.22.173.255 -m "IP Mask"
+classes modify network create NET_URM 2 -a 91.198.17.0 -s 24 -f \
+91.198.17.0 -t 91.198.17.255 -m "IP Mask"
+classes modify network create NET_POLICIJA 1 -a 193.219.11.64 -s 27 -f \
+193.219.11.64 -t 193.219.11.95 -m "IP Mask"
+classes modify network create NET_STATISTIKA 1 -a 193.219.12.224 -s 27 -f \
+193.219.12.224 -t 193.219.12.255 -m "IP Mask"
+classes modify network create NET_VMI 1 -a 193.219.10.16 -s 28 -f \
+193.219.10.16 -t 193.219.10.31 -m "IP Mask"
+classes modify network create NET_VMI 2 -a 193.219.10.128 -s 29 -f \
+193.219.10.128 -t 193.219.10.135 -m "IP Mask"
+classes modify network create NET_VMI 3 -a 195.182.89.96 -s 27 -f \
+195.182.89.96 -t 195.182.89.127 -m "IP Mask"
+classes modify network create NET_VMI 4 -a 195.182.64.192 -s 27 -f \
+195.182.64.192 -t 195.182.64.223 -m "IP Mask"
+classes modify network create NET_LB 1 -a 195.182.85.48 -s 28 -f \
+195.182.85.48 -t 195.182.85.63 -m "IP Mask"
+classes modify network create NET_KPD 1 -a 195.182.68.152 -s 29 -f \
+195.182.68.152 -t 195.182.68.159 -m "IP Mask"
+classes modify network create NET_KPD 2 -a 195.182.70.48 -s 28 -f \
+195.182.70.48 -t 195.182.70.63 -m "IP Mask"
+classes modify network create NET_VRM_IRD 1 -a 193.219.12.48 -s 28 -f \
+193.219.12.48 -t 193.219.12.63 -m "IP Mask"
+classes modify network create NET_VRM_IRD 2 -a 195.182.82.208 -s 28 -f \
+195.182.82.208 -t 195.182.82.223 -m "IP Mask"
+classes modify network create NET_VRM_IRD 3 -a 195.182.83.176 -s 28 -f \
+195.182.83.176 -t 195.182.83.191 -m "IP Mask"
+classes modify network create NET_VRM_IRD 4 -a 195.182.72.128 -s 28 -f \
+195.182.72.128 -t 195.182.72.143 -m "IP Mask"
+classes modify network create NET_VRM_IRD 5 -a 193.219.12.16 -s 28 -f \
+193.219.12.16 -t 193.219.12.31 -m "IP Mask"
+classes modify network create NET_VRM_IRD 6 -a 193.219.12.64 -s 28 -f \
+193.219.12.64 -t 193.219.12.79 -m "IP Mask"
+classes modify network create NET_SODRA 1 -a 195.182.86.192 -s 26 -f \
+195.182.86.192 -t 195.182.86.255 -m "IP Mask"
+classes modify network create NET_SODRA 2 -a 195.182.88.200 -s 29 -f \
+195.182.88.200 -t 195.182.88.207 -m "IP Mask"
+classes modify network create IS_NET_WWW 0 -s 0 -f 195.182.81.56 -t \
+195.182.81.127 -m "IP Range"
+classes modify network create IS_NET_DNS 1 -a 195.182.81.16 -s 28 -f \
+195.182.81.16 -t 195.182.81.31 -m "IP Mask"
+classes modify network create IS_NET_DNS 2 -a 195.182.90.248 -s 29 -f \
+195.182.90.248 -t 195.182.90.255 -m "IP Mask"
+classes modify network create IS_NET_MAIL 0 -s 0 -f 195.182.81.32 -t \
+195.182.81.55 -m "IP Range"
+classes modify network create IS_NET_WWW2 1 -a 195.182.87.0 -s 24 -f \
+195.182.87.0 -t 195.182.87.255 -m "IP Mask"
+classes modify network create IS_NET_WAF1 1 -a 195.182.95.128 -s 25 -f \
+195.182.95.128 -t 195.182.95.255 -m "IP Mask"
+classes modify network create IS_NET_TEST 0 -a 195.182.91.170 -s 32 -f \
+195.182.91.170 -t 195.182.91.170 -m "IP Mask"
+classes modify network create IS_NET_TEST 1 -a 195.182.91.174 -s 32 -f \
+195.182.91.174 -t 195.182.91.174 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 0 -a 104.154.58.95 -s \
+32 -f 104.154.58.95 -t 104.154.58.95 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 1 -a 52.2.10.94 -s \
+32 -f 52.2.10.94 -t 52.2.10.94 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 2 -a 52.3.105.23 -s \
+32 -f 52.3.105.23 -t 52.3.105.23 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 3 -a 148.251.123.200 \
+-s 32 -f 148.251.123.200 -t 148.251.123.200 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 4 -a 91.223.133.18 -s \
+32 -f 91.223.133.18 -t 91.223.133.18 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 5 -a 91.223.133.32 -s \
+32 -f 91.223.133.32 -t 91.223.133.32 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 6 -a 136.243.36.96 -s \
+32 -f 136.243.36.96 -t 136.243.36.96 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 7 -a 144.76.198.150 \
+-s 32 -f 144.76.198.150 -t 144.76.198.150 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 8 -a 216.244.66.243 \
+-s 32 -f 216.244.66.243 -t 216.244.66.243 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 9 -a 148.251.43.180 \
+-s 32 -f 148.251.43.180 -t 148.251.43.180 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 10 -a 216.244.66.227 \
+-s 32 -f 216.244.66.227 -t 216.244.66.227 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 11 -a 148.251.136.43 \
+-s 32 -f 148.251.136.43 -t 148.251.136.43 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 12 -a 5.9.18.75 -s \
+32 -f 5.9.18.75 -t 5.9.18.75 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 13 -a \
+108.162.216.135 -s 32 -f 108.162.216.135 -t 108.162.216.135 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 14 -a 93.158.152.201 \
+-s 32 -f 93.158.152.201 -t 93.158.152.201 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 15 -a 91.223.133.30 \
+-s 32 -f 91.223.133.30 -t 91.223.133.30 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 16 -a 188.40.46.135 \
+-s 32 -f 188.40.46.135 -t 188.40.46.135 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 17 -a 216.244.66.244 \
+-s 32 -f 216.244.66.244 -t 216.244.66.244 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 18 -a 136.243.36.85 \
+-s 32 -f 136.243.36.85 -t 136.243.36.85 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 19 -a 91.223.133.17 \
+-s 32 -f 91.223.133.17 -t 91.223.133.17 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 20 -a 216.244.66.242 \
+-s 32 -f 216.244.66.242 -t 216.244.66.242 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 21 -a 216.244.66.230 \
+-s 32 -f 216.244.66.230 -t 216.244.66.230 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 22 -a \
+178.154.189.203 -s 32 -f 178.154.189.203 -t 178.154.189.203 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 23 -a 216.244.66.241 \
+-s 32 -f 216.244.66.241 -t 216.244.66.241 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 24 -a \
+178.154.189.202 -s 32 -f 178.154.189.202 -t 178.154.189.202 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 25 -a 95.108.213.201 \
+-s 32 -f 95.108.213.201 -t 95.108.213.201 -m "IP Mask"
+classes modify network create BL_TOP_ATTACK_SOURCES 26 -a 37.9.122.203 -s \
+32 -f 37.9.122.203 -t 37.9.122.203 -m "IP Mask"
+classes modify physical-port-groups setCreate Management 25
+classes modify physical-port-groups setCreate Management 26
+services ntp polling-interval set 3600
+services ntp status set enable
+services ntp time-zone set 02:00
+services ntp server-port set 123
+manage user table create sync-master -pw \
+A+Suhf/cphu9hyGY5mapbR1y+WzwJ5S5
+manage user table create int-sync-master -pw \
+OB/jUNumbdoyQF84RTVBK6Yvx2LlaUkb
+manage user table create rimvis -pw VViwpL+bGHDyVBlnaujzsO5J6hWEg+Ae
+manage user table create spectrum -pw GHV7Zh1V0IoNz7XWCnLOmyCxHyNezpCp
+manage user table create zygis -pw wpzr44cnl/SRthi1uV1WRJdeLXBnvV7A
+manage user table create saugosdep -pw VyT74UngbZMAe4b4jCaNuThg3Gf6WNtj \
+-ua readonly
+manage user table create rolandas -pw BygpgNq+V5YiP83BzUoScGMZIa8nDqOK
+manage telnet status set enable
+manage telnet server-port set 23
+manage web status set enable
+manage ssh status set enable
+manage secure-web status set enable
+net physical-interface set 1 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 2 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 3 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 4 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 5 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 6 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 7 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 8 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 9 -s 10GbE -d Full -an Off -a Auto
+net physical-interface set 10 -s 10GbE -d Full -an Off -a Auto
+net physical-interface set 11 -s GbE -d Full -an On -a Auto
+net physical-interface set 12 -s GbE -d Full -an On -a Auto
+net physical-interface set 13 -s 10GbE -d Full -an Off -a Auto
+net physical-interface set 14 -s 10GbE -d Full -an Off -a Auto
+net physical-interface set 15 -s 10GbE -d Full -an Off -a Auto
+net physical-interface set 16 -s 10GbE -d Full -an Off -a Auto
+net physical-interface set 17 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 18 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 19 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 20 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 21 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 22 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 23 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 24 -s Auto -d Full -an Auto -a Auto
+net physical-interface set 25 -s GbE -d Full -an On -a Auto
+net physical-interface set 26 -s GbE -d Full -an On -a Auto
+services dns client primary-server set 195.182.81.20
+services dns client alt-server set 195.182.81.19
+services dns client status set Enabled
+services ntp server-name set 10.100.1.21
+manage snmp port set 161
+manage snmp status set Enabled
+statistics protocol management-ip set 10.100.64.145
+net l2-interface set 23 -ad up
+net l2-interface set 9 -ad up -ifd VilnKalvEdge
+net l2-interface set 10 -ad up -ifd VilnLtenP
+net l2-interface set 11 -ad up -ifd URM
+net l2-interface set 12 -ad up -ifd "URM To VilnKalvEdge"
+net l2-interface set 13 -ad up -ifd VilnSavaP
+net l2-interface set 14 -ad up -ifd VilnSavaEdge
+net l2-interface set 15 -ad up
+net l2-interface set 16 -ad up
+services daylight-saving begins set 01/04:2
+services daylight-saving ends set 27/10:2
+services daylight-saving status set enabled
+manage web-services status set enable
+manage snmp groups create SNMPv1 public -gn initial
+manage snmp groups create SNMPv1 ReadOnlySecurity -gn InitialReadOnly
+manage snmp groups create SNMPv2c public -gn initial
+manage snmp groups create SNMPv2c ReadOnlySecurity -gn InitialReadOnly
+manage snmp groups create UserBased radware -gn initial
+manage snmp groups create UserBased ReadOnlySecurity -gn InitialReadOnly
+manage snmp groups create SNMPv2c snmpconfig -gn initial
+manage snmp groups create SNMPv1 snmpconfig -gn initial
+manage snmp access create initial SNMPv1 noAuthNoPriv -rvn iso -wvn iso \
+-nvn iso
+manage snmp access create InitialReadOnly SNMPv1 noAuthNoPriv -rvn \
+ReadOnlyView
+manage snmp access create initial SNMPv2c noAuthNoPriv -rvn iso -wvn iso \
+-nvn iso
+manage snmp access create InitialReadOnly SNMPv2c noAuthNoPriv -rvn \
+ReadOnlyView
+manage snmp access create initial UserBased authPriv -rvn iso -wvn iso \
+-nvn iso
+manage snmp access create InitialReadOnly UserBased authPriv -rvn \
+ReadOnlyView
+manage snmp views create iso 1
+manage snmp views create ReadOnlyView 1
+manage snmp views create ReadOnlyView 1.3.6.1.4.1.89.2.7.2 -cm excluded
+manage snmp views create ReadOnlyView 1.3.6.1.6.3.18.1.1 -cm excluded
+manage snmp views create ReadOnlyView 1.3.6.1.6.3.15.1.2.2 -cm excluded
+manage snmp views create ReadOnlyView 1.3.6.1.4.1.89.35.1.61 -cm \
+excluded
+manage snmp views create ReadOnlyView 1.3.6.1.6.3.16.1.2 -cm excluded
+manage snmp views create ReadOnlyView 1.3.6.1.6.3.16.1.4 -cm excluded
+manage snmp views create ReadOnlyView 1.3.6.1.6.3.16.1.5 -cm excluded
+manage snmp notify create allTraps -ta v3Traps
+manage snmp global engine-id set 80000059030003b2ba6c00
+manage snmp users create radware -cf 0.0 -ap MD5 -akc \
+ed8ef385bbcfe5aaeeb4694ff4c3c246 -pp DES -pkc \
+ed8ef385bbcfe5aaeeb4694ff4c3c246
+manage snmp target-address create Vision-V1-10.100.64.145 -a \
+10.100.64.145-162 -tl v3Traps -p Vision-V1-10.100.64.145
+manage snmp target-address create Vision-V1-10.101.111.201 -a \
+10.101.111.201-162 -tl v3Traps -p Vision-V1-10.101.111.201
+manage snmp target-parameters create snmpconfig-1 -d SNMPv1 -sm SNMPv1 \
+-sn snmpconfig -sl noAuthNoPriv
+manage snmp target-parameters create Visionv2c -d SNMPv2c -sm SNMPv2c -sn \
+snmpconfig -sl noAuthNoPriv
+manage snmp target-parameters create Vision-V1-10.100.64.145 -d SNMPv1 \
+-sm SNMPv1 -sn snmpconfig -sl noAuthNoPriv
+manage snmp target-parameters create Vision-V1-10.101.111.201 -d SNMPv1 \
+-sm SNMPv1 -sn snmpconfig -sl noAuthNoPriv
+manage snmp community create snmpconfig -n snmpconfig -sn snmpconfig
+manage snmp community create public -n public -sn public
+services auditing status set Enabled
+dp out-of-state profiles create Default_RWD_report -rs info -a \
+"Report Only"
+dp out-of-state profiles create Default_RWD_block -ack disable -rs info
+dp out-of-state profiles create OOS_5k -rs info
+dp out-of-state profiles create OOS_100K -act 100000 -term 80000 -rs \
+info
+dp out-of-state profiles create OOS_250K -act 250000 -term 200000 -rs \
+info
+dp out-of-state profiles create OOS_50K -act 50000 -term 40000 -rs info
+dp out-of-state profiles create OOS_0.5K -act 500 -term 400 -rs info
+dp out-of-state profiles create OOS_200K -act 200000 -term 150000
+dp out-of-state profiles create OOS_10K -act 10000 -term 8000 -rs info
+dp out-of-state global-parameters startup-mode set On
+dp out-of-state global-parameters startup-timer set 1800
+dp reporting global send-traps set enable
+dp reporting security-log status set enable
+dp reporting global send-terminal set enable
+dp reporting global send-syslog set enable
+dp signatures-protection filter basic-filters user setCreate\
+ DOS-AssassinDoS-HTTP -p tcp -o 1 -om ffffffff -op 4554202f -oc Equal -ol \
+"Four Bytes" -rt "L4 Data" -dp http -pst "Layer 7" -psr 5
+dp signatures-protection filter basic-filters user setCreate\
+ Android-LOIC-TCP-whe -p tcp -ol None -c When20harpoons,20air -ct Text -ce \
+"Case Sensitive" -dp http
+dp signatures-protection filter basic-filters user setCreate\
+ Android-LOIC-UDP-whe -p udp -ol None -c When20harpoons,20air -ct Text -ce \
+"Case Sensitive" -dp http
+dp signatures-protection filter basic-filters user setCreate\
+ DOS-Mobile-LOIC-Apache -p tcp -ol None -c \
+\\x0d\\x0aRange:\\x20bytes=0-,0[^\\x0d\\x0a]{255} -ct Text -ce \
+"Case Insensitive" -dp http -cr Yes
+dp signatures-protection filter basic-filters user setCreate\
+ SnmpResponseAbove_1100 -p udp -o 4 -om ffff0000 -op 044c0000 -oc \
+"Greater Than" -ol "Two Bytes" -rt "L4 Header" -sp snmp
+dp signatures-protection filter basic-filters user setCreate\
+ GetBulkRequest -p udp -o 21 -om ff000000 -op a5000000 -oc Equal -rt \
+"L4 Header" -dp snmp
+dp signatures-protection filter basic-filters user setCreate\
+ GetBulk_public_01 -p udp -o 5 -om ffffffff -op 04067075 -oc Equal -ol \
+"Four Bytes" -rt "L4 Data" -dp snmp
+dp signatures-protection filter basic-filters user setCreate\
+ GetBulk_public_02 -p udp -o 9 -om ffff0000 -op 626c6963 -oc Equal -ol \
+"Two Bytes" -rt "L4 Data" -dp snmp
+dp signatures-protection filter basic-filters user setCreate SNMP_V2C -p \
+udp -o 10 -om ffffff00 -op 02010100 -oc Equal -ol "Three Bytes" -rt \
+"L4 Header" -dp snmp
+dp signatures-protection filter basic-filters user setCreate\
+ ERT-bash2-CVE-2014-6271 -p tcp -ol None -c \\x28\\x29x20\\x76b -ct \
+"Normalized URL" -ce "Case Sensitive" -dp http
+dp signatures-protection filter basic-filters user setCreate\
+ ERT-bash3-CVE-2014-6271 -p tcp -ol None -c \
+\\x28\\x29x20\\x76b\\x20\\x3a\\x3b\\x7d\\x3b -ct Text -ce "Case Sensitive" \
+-dp http
+dp signatures-protection filter basic-filters user setCreate\
+ block_All_SSLv3_req1_a -p tcp -om 80000000 -op 80000000 -oc Equal -rt \
+"L4 Data" -dp https
+dp signatures-protection filter basic-filters user setCreate\
+ block_All_SSLv3_req1_b -p tcp -o 3 -om ffffff00 -op 01030000 -oc Equal -ol \
+"Three Bytes" -rt "L4 Data" -dp https
+dp signatures-protection filter basic-filters user setCreate\
+ block_All_SSLv3_req3_a -p tcp -om ffffff00 -op 16030000 -oc Equal -ol \
+"Three Bytes" -rt "L4 Data" -dp https
+dp signatures-protection filter basic-filters user setCreate\
+ block_All_SSLv3_req3_b -p tcp -o 5 -om ff000000 -op 01000000 -oc Equal -rt \
+"L4 Data" -dp https
+dp signatures-protection filter basic-filters user setCreate\
+ block_All_SSLv3_req3_c -p tcp -o 9 -om ffff0000 -op 03000000 -oc Equal -ol \
+"Two Bytes" -rt "L4 Data" -dp https
+dp signatures-protection filter basic-filters user setCreate PingBack -p \
+tcp -ol None -c WordPress\\/\\d\\.\\d\\.\\d\\; -ct Text -ce \
+"Case Insensitive" -cr Yes
+dp signatures-protection filter basic-filters user setCreate pinback -p \
+tcp -ol None -c pingback.ping -ct Text -ce "Case Insensitive" -dp http
+hidden advanced filters user setCreate group_GetResponseCounting\
+ SnmpResponseAbove_1100
+hidden advanced filters user setCreate group_SNMP_GetBulk_Request\
+ GetBulkRequest
+hidden advanced filters user setCreate group_SNMP_GetBulk_Request\
+ GetBulk_public_01
+hidden advanced filters user setCreate group_SNMP_GetBulk_Request\
+ GetBulk_public_02
+hidden advanced filters user setCreate group_SNMP_GetBulk_Request\
+ SNMP_V2C
+hidden advanced filters user setCreate group_ERT-bash2-CVE-2014-6271\
+ ERT-bash2-CVE-2014-6271
+hidden advanced filters user setCreate group_ERT-bash3-CVE-2014-6271\
+ ERT-bash3-CVE-2014-6271
+hidden advanced filters user setCreate "g_WordPress XML-RPC PingBack"\
+ PingBack
+hidden advanced filters user setCreate group_pingback pingback
+dp signatures-protection attacks user setCreate 8284 -n \
+Web-Crawlers-Generic-Bots -f Web-Crawlers-Generic-Bots -at 1 -rs Info -dt \
+1 -tt 1
+hidden profiles user create IS_DNS_NTP DNS type_5 attribute_2 -ti 5 -va \
+2
+hidden profiles user create IS_DNS_NTP DNS type_4 attribute_15 -ti 4 -va \
+15
+hidden profiles user create IS_DNS_NTP NTP type_9 attribute_1 -ti 9 -va \
+1
+hidden profiles user create IS_DNS_NTP NTP type_3 attribute_1 -ti 3 -va \
+1
+hidden profiles user create IS_DNS_NTP NTP type_5 attribute_9 -ti 5 -va \
+9
+hidden profiles user create IS_MAIL MAIL type_9 attribute_1 -ti 9 -va 1
+hidden profiles user create IS_MAIL MAIL type_5 attribute_5 -ti 5 -va 5
+hidden profiles user create IS_MAIL MAIL type_5 attribute_10 -ti 5 -va \
+10
+hidden profiles user create IS_MAIL MAIL type_5 attribute_12 -ti 5 -va \
+12
+hidden profiles user create IS_MAIL MAIL type_6 attribute_30 -ti 6 -va \
+30
+hidden profiles user create IS_WWW IS_WWW_PROD type_9 attribute_1 -ti 9 \
+-va 1
+hidden profiles user create IS_WWW IS_WWW_PROD type_3 attribute_1 -ti 3 \
+-va 1
+hidden profiles user create IS_WWW IS_WWW_PROD type_5 attribute_4 -ti 5 \
+-va 4
+hidden profiles user create IS_WWW IS_WWW_PROD type_5 attribute_5 -ti 5 \
+-va 5
+hidden profiles user create IS_WWW IS_WWW_PROD type_5 attribute_10 -ti 5 \
+-va 10
+hidden profiles user create IS_WWW IS_WWW_PROD type_5 attribute_12 -ti 5 \
+-va 12
+hidden profiles user create IS_WWW IS_WWW_PROD type_6 attribute_30 -ti 6 \
+-va 30
+hidden profiles user create IS_WAF1 IS_WAF1 type_6 attribute_30 -ti 6 -va \
+30
+hidden profiles user create IS_WAF1 IS_WAF1 type_3 attribute_1 -ti 3 -va \
+1
+hidden profiles user create IS_WAF1 IS_WAF1 type_3 attribute_2 -ti 3 -va \
+2
+hidden profiles user create IS_WAF1 IS_WAF1 type_3 attribute_8 -ti 3 -va \
+8
+hidden profiles user create IS_WAF1 IS_WAF1 type_5 attribute_5 -ti 5 -va \
+5
+hidden profiles user create IS_WAF1 IS_WAF1 type_5 attribute_10 -ti 5 -va \
+10
+hidden profiles user create IS_WAF1 IS_WAF1 type_5 attribute_12 -ti 5 -va \
+12
+hidden profiles user create IS_WAF1 IS_WAF1 type_5 attribute_4 -ti 5 -va \
+4
+hidden profiles user create IS_WAF1 IS_WAF1 type_9 attribute_1 -ti 9 -va \
+1
+hidden profiles user create LINUX_WIN LINUX type_6 attribute_30 -ti 6 -va \
+30
+hidden profiles user create LINUX_WIN LINUX type_3 attribute_1 -ti 3 -va \
+1
+hidden profiles user create LINUX_WIN LINUX type_3 attribute_2 -ti 3 -va \
+2
+hidden profiles user create LINUX_WIN LINUX type_5 attribute_4 -ti 5 -va \
+4
+hidden profiles user create LINUX_WIN LINUX type_9 attribute_1 -ti 9 -va \
+1
+hidden profiles user create Corp_DMZ_In_cust R1 type_8 attribute_5 -ti 8 \
+-va 5
+hidden profiles user create Corp_DMZ_In_cust R1 type_6 attribute_30 -ti \
+6 -va 30
+hidden profiles user create Corp_DMZ_In_cust R1 type_2 attribute_3 -ti 2 \
+-va 3
+hidden profiles user create Corp_DMZ_In_cust R2 type_7 attribute_4 -ti 7 \
+-va 4
+hidden profiles user create Corp_DMZ_Out_Cust Rules_1 type_8 attribute_5 \
+-ti 8 -va 5
+hidden profiles user create Corp_DMZ_Out_Cust Rules_1 type_6 attribute_30 \
+-ti 6 -va 30
+hidden profiles user create Corp_DMZ_Out_Cust Rules_1 type_2 attribute_3 \
+-ti 2 -va 3
+hidden profiles user create Corp_DMZ_Out_Cust Rules_1 type_7 attribute_1 \
+-ti 7 -va 1
+hidden profiles user create Corp_DMZ_Out_Cust Rules_1 type_7 attribute_2 \
+-ti 7 -va 2
+hidden profiles user create Corp_DMZ_Out_Cust Rules_1 type_7 attribute_4 \
+-ti 7 -va 4
+hidden profiles user create IS_WAF1 IS_WAF1 type_5 attribute_9 -ti 5 -va \
+9
+hidden profiles user create Corp_DMZ_In_NTP R1 type_8 attribute_5 -ti 8 \
+-va 5
+hidden profiles user create Corp_DMZ_In_NTP R1 type_6 attribute_30 -ti 6 \
+-va 30
+hidden profiles user create Corp_DMZ_In_NTP R1 type_2 attribute_3 -ti 2 \
+-va 3
+hidden profiles user create Corp_DMZ_In_NTP R2 type_7 attribute_4 -ti 7 \
+-va 4
+hidden profiles user create Corp_DMZ_In_NTP R2 type_9 attribute_1 -ti 9 \
+-va 1
+hidden profiles user create Corp_DMZ_In_NTP R2 type_5 attribute_9 -ti 5 \
+-va 9
+hidden profiles user create Worms Rule_Worms type_7 attribute_2 -ti 7 -va \
+2
+hidden profiles user create IS_MAIL DDoS_FLOOD type_7 attribute_4 -ti 7 \
+-va 4
+hidden profiles user create IS_WAF1 DDoS_Flood type_7 attribute_4 -ti 7 \
+-va 4
+hidden profiles user create IS_WWW DDoS_Flood type_7 attribute_4 -ti 7 \
+-va 4
+dp reporting global traps-risk set info
+dp reporting global terminal-risk set info
+dp reporting global syslog-risk set low
+dp reporting netforensics status set enable
+dp global suspend-table min-timeout set 20
+dp global suspend-table max-same-src-entries set 0
+dp global suspend-table max-timeout set 600
+dp behavioral-DoS global advanced profile-configuration create BDoS_5000 \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 5000 -band_out 5000 \
+-in_tcp_quota 80 -in_udp_quota 70 -in_icmp_quota 10 -in_igmp_quota 10 \
+-out_tcp_quota 80 -out_udp_quota 70 -out_icmp_quota 10 -out_igmp_quota 10 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_2500 \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 2500 -band_out 2500 \
+-in_tcp_quota 80 -in_udp_quota 50 -in_icmp_quota 10 -in_igmp_quota 10 \
+-out_tcp_quota 80 -out_udp_quota 50 -out_icmp_quota 10 -out_igmp_quota 10 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDOS_IS_MAIL -tcpsyn active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable
+dp behavioral-DoS global advanced profile-configuration create\
+ BDOS_IS_WWW -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_IVPK \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDOS_WAF1 \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_NMA \
+-tcpsyn active -igmp active -icmp active -tcpf active -tcpr active -tcps \
+active -tcpfrg active -band_in 100000 -band_out 100000 -in_tcp_quota 75 \
+-in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 -out_tcp_quota 75 \
+-out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 -pr enable
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_POLICIJA -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_VPT \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_UKMIN \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_STATISTIKA -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_KAM \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_VKEEK \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_SUMIN \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_STT \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_NTA \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_VMI \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_GLOBAL_0 -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 10000000 -band_out \
+10000000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 1 -in_igmp_quota \
+1 -out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 1 -out_igmp_quota 1 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDOS_VKONTROLE -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_RRT \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_IPV6 \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_GIS \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_SAM \
+-tcpsyn active -udp active -igmp active -tcpf active -tcpr active -tcps \
+active -tcpfrg active -band_in 100000 -band_out 100000 -in_tcp_quota 75 \
+-in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 -out_tcp_quota 75 \
+-out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 -pr enable -udpfrg \
+active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_PROKURATURA -tcpsyn active -udp active -igmp active -icmp active \
+-tcpf active -tcpr active -tcps active -tcpfrg active -band_in 100000 \
+-band_out 100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 \
+-in_igmp_quota 2 -out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 \
+-out_igmp_quota 2 -pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_VDTAT \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_IS_WWW_KALV -tcpsyn active -udp active -igmp active -icmp active \
+-tcpf active -tcpr active -tcps active -tcpfrg active -band_in 100000 \
+-band_out 100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 \
+-in_igmp_quota 2 -out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 \
+-out_igmp_quota 2 -pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_ZUM \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_ZT_ZUM -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_IS_Test -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-level Medium -pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_GLOBAL_1 -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 10000000 -band_out \
+10000000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 1 -in_igmp_quota \
+1 -out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 1 -out_igmp_quota 1 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_LRP \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_KAUN_SAV -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_FINMIN -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_KULTMIN -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_TEISMIN -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_LRVK \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_SADM \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_HIGINS -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_PANE_SAV -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_PANE_RSAV -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_SIAU_SAV -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_SIRV_RSAV -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_UTEN_RSAV -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_VILN_SAV -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_LB \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_KPD \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_KAUN_RSAV -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create KLIE_NDNT \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 10000000 -band_out 10000000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 1 -in_igmp_quota 1 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 1 -out_igmp_quota 1 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_VRM_IRD -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create\
+ BDoS_FILHARM -tcpsyn active -udp active -igmp active -icmp active -tcpf \
+active -tcpr active -tcps active -tcpfrg active -band_in 100000 -band_out \
+100000 -in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_URM \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced profile-configuration create BDoS_SODRA \
+-tcpsyn active -udp active -igmp active -icmp active -tcpf active -tcpr \
+active -tcps active -tcpfrg active -band_in 100000 -band_out 100000 \
+-in_tcp_quota 75 -in_udp_quota 50 -in_icmp_quota 2 -in_igmp_quota 2 \
+-out_tcp_quota 75 -out_udp_quota 50 -out_icmp_quota 2 -out_igmp_quota 2 \
+-pr enable -udpfrg active
+dp behavioral-DoS global advanced learning response_period set week
+dp syn-protection attacks user setCreate 500000 -n HTTP_cust -a http \
+-acts 500 -tts 300
+dp syn-protection attacks user setCreate 500001 -n HTTP_300 -a http -acts \
+300 -tts 200 -rs Medium
+dp syn-protection attacks user setCreate 500002 -n HTTPS_300 -a https \
+-acts 300 -tts 200 -rs Medium
+dp syn-protection attacks user setCreate 500003 -n All_TCP_ports -a \
+All_TCP_Ports -rs Medium
+dp syn-protection attacks user setCreate 500004 -n HTTP_100 -a http -acts \
+100 -tts 70 -rs Medium
+dp syn-protection attacks user setCreate 500005 -n HTTPS_100 -a https \
+-acts 100 -tts 70 -rs Medium
+dp syn-protection attacks user setCreate 500007 -n HTTP_50 -a http -acts \
+50 -tts 30 -rs Medium
+dp syn-protection attacks user setCreate 500008 -n HTTPS_50 -a https \
+-acts 50 -tts 30 -rs Medium
+dp syn-protection attacks user setCreate 500009 -n HTTP_30 -a http -acts \
+30 -tts 20 -rs Medium
+dp syn-protection attacks user setCreate 500010 -n HTTPS_30 -a https \
+-acts 30 -tts 20 -rs Medium
+dp syn-protection attacks user setCreate 500011 -n TELNET_50 -a telnet \
+-acts 50 -tts 30 -rs Medium
+dp syn-protection attacks user setCreate 500012 -n ALL_TCP_2500 -a \
+All_TCP_Ports -rs Medium
+dp syn-protection attacks user setCreate 500013 -n ALL_TCP_2000 -a \
+All_TCP_Ports -acts 2000 -tts 1300 -rs Medium
+dp syn-protection attacks user setCreate 500014 -n ALL_TCP_1000 -a \
+All_TCP_Ports -acts 1000 -tts 700 -rs Medium
+dp syn-protection attacks user setCreate 500015 -n ALL_TCP_800 -a \
+All_TCP_Ports -acts 800 -tts 500 -rs Medium
+dp syn-protection attacks user setCreate 500016 -n ALL_TCP_500 -a \
+All_TCP_Ports -acts 700 -tts 600 -rs Medium
+dp syn-protection attacks user setCreate 500017 -n ALL_TCP_250 -a \
+All_TCP_Ports -acts 250 -tts 150 -rs Medium
+dp syn-protection attacks user setCreate 500018 -n ALL_TCP_100 -a \
+All_TCP_Ports -acts 100 -tts 70 -rs Medium
+dp syn-protection attacks user setCreate 500019 -n ALL_TCP_50 -a \
+All_TCP_Ports -acts 50 -tts 30 -rs Medium
+dp syn-protection attacks user setCreate 500020 -n ALL_TCP_1500 -a \
+All_TCP_Ports -acts 1500 -tts 1000 -rs Medium
+dp syn-protection attacks user setCreate 200000 -n HTTP -a http -rs \
+Medium
+dp syn-protection attacks user setCreate 500021 -n HTTP1 -a http -acts 1 \
+-tts 0
+dp syn-protection attacks user setCreate 500022 -n HTTPS1 -a https -acts \
+1 -tts 0
+dp syn-protection attacks user setCreate 500023 -n UDP_53_limit -a \
+UDP_53 -acts 1 -tts 0
+hidden profile setCreate SYN_ALL FTP_CNTL -aid 200003
+hidden profile setCreate SYN_ALL SMTP -aid 200006
+hidden profile setCreate SYN_ALL HTTP -aid 200000
+hidden profile setCreate SYN_ALL HTTPS -aid 200001
+hidden profile setCreate SYN_ALL IMAP -aid 200005
+hidden profile setCreate SYN_ALL POP3 -aid 200004
+hidden profile setCreate SYN_ALL RPC -aid 200008
+hidden profile setCreate SYN_ALL RTSP -aid 200002
+hidden profile setCreate SYN_ALL TELNET -aid 200007
+hidden profile setCreate http_300 HTTP_300 -aid 500001
+hidden profile setCreate http_300 HTTPS_300 -aid 500002
+hidden profile setCreate SYN_GLOBAL FTP_CNTL -aid 200003
+hidden profile setCreate SYN_GLOBAL HTTP -aid 200000
+hidden profile setCreate SYN_GLOBAL HTTPS -aid 200001
+hidden profile setCreate SYN_GLOBAL IMAP -aid 200005
+hidden profile setCreate SYN_GLOBAL POP3 -aid 200004
+hidden profile setCreate SYN_GLOBAL RPC -aid 200008
+hidden profile setCreate SYN_GLOBAL RTSP -aid 200002
+hidden profile setCreate SYN_GLOBAL SMTP -aid 200006
+hidden profile setCreate SYN_GLOBAL TELNET -aid 200007
+hidden profile setCreate ALL_Ports_TCP All_TCP_ports -aid 500003
+hidden profile setCreate HTTP-HTTPS_100 HTTPS_100 -aid 500005
+hidden profile setCreate HTTP-HTTPS_100 HTTP_100 -aid 500004
+hidden profile setCreate HTTP-HTTPS_50 HTTPS_50 -aid 500008
+hidden profile setCreate HTTP-HTTPS_50 HTTP_50 -aid 500007
+hidden profile setCreate HTTP-HTTPS_30 HTTP_30 -aid 500009
+hidden profile setCreate HTTP-HTTPS_30 HTTPS_30 -aid 500010
+hidden profile setCreate HTTP_S_TELNET_100 HTTPS_100 -aid 500005
+hidden profile setCreate HTTP_S_TELNET_100 HTTP_100 -aid 500004
+hidden profile setCreate HTTP_S_TELNET_100 TELNET_50 -aid 500011
+hidden profile setCreate HTTP-HTTPS_100_JAVA HTTP_100 -aid 500004
+hidden profile setCreate HTTP-HTTPS_100_JAVA HTTPS_100 -aid 500005
+hidden profile setCreate HTTP-HTTPS_50_JAVA HTTPS_50 -aid 500008
+hidden profile setCreate HTTP-HTTPS_50_JAVA HTTP_50 -aid 500007
+hidden profile setCreate HTTP-HTTPS_30_JAVA HTTPS_30 -aid 500010
+hidden profile setCreate HTTP-HTTPS_30_JAVA HTTP_30 -aid 500009
+hidden profile setCreate ALL_2500_JAV ALL_TCP_2500 -aid 500012
+hidden profile setCreate ALL_2500_RED ALL_TCP_2500 -aid 500012
+hidden profile setCreate ALL_2500_TRAN ALL_TCP_2500 -aid 500012
+hidden profile setCreate ALL_2000_JAV ALL_TCP_2000 -aid 500013
+hidden profile setCreate ALL_2000_RED ALL_TCP_2000 -aid 500013
+hidden profile setCreate ALL_2000_TRAN ALL_TCP_2000 -aid 500013
+hidden profile setCreate ALL_1500_JAV ALL_TCP_1500 -aid 500020
+hidden profile setCreate ALL_1500_RED ALL_TCP_1500 -aid 500020
+hidden profile setCreate ALL_1500_TRAN ALL_TCP_1500 -aid 500020
+hidden profile setCreate ALL_1000_JAV ALL_TCP_1000 -aid 500014
+hidden profile setCreate ALL_1000_RED ALL_TCP_1000 -aid 500014
+hidden profile setCreate ALL_1000_TRAN ALL_TCP_1000 -aid 500014
+hidden profile setCreate ALL_800_JAV ALL_TCP_800 -aid 500015
+hidden profile setCreate ALL_800_RED ALL_TCP_800 -aid 500015
+hidden profile setCreate ALL_800_TRAN ALL_TCP_800 -aid 500015
+hidden profile setCreate ALL_500_JAV ALL_TCP_500 -aid 500016
+hidden profile setCreate ALL_500_RED ALL_TCP_500 -aid 500016
+hidden profile setCreate ALL_500_TRAN ALL_TCP_500 -aid 500016
+hidden profile setCreate ALL_250_RED ALL_TCP_250 -aid 500017
+hidden profile setCreate ALL_250_TRAN ALL_TCP_250 -aid 500017
+hidden profile setCreate ALL_100_JAV ALL_TCP_100 -aid 500018
+hidden profile setCreate ALL_100_RED ALL_TCP_100 -aid 500018
+hidden profile setCreate ALL_100_TRAN ALL_TCP_100 -aid 500018
+hidden profile setCreate ALL_50_JAV ALL_TCP_50 -aid 500019
+hidden profile setCreate ALL_50_RED ALL_TCP_50 -aid 500019
+hidden profile setCreate ALL_50_TRAN ALL_TCP_50 -aid 500019
+hidden profile setCreate HTTP_HTTPS_2500 HTTP -aid 200000
+hidden profile setCreate HTTP_HTTPS_2500 HTTPS -aid 200001
+hidden profile setCreate ALL_250_JAV ALL_TCP_50 -aid 500019
+hidden profile setCreate HTTP-HTTPS_1 HTTP1 -aid 500021
+hidden profile setCreate HTTP-HTTPS_1 HTTPS1 -aid 500022
+hidden profile setCreate igor_test HTTP_100 -aid 500004
+hidden profile setCreate Test_RZ UDP_53_limit -aid 500023
+dp behavioral-DoS global advanced footprint-strictness set low
+dp connection-limit attack setCreate 450005 -n CON_100_HTTP_BLOCK -dp \
+http -ts 100 -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450006 -n CON_100_HTTPS_BLOCK -dp \
+https -ts 100 -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450007 -n CON_100_HTTP_REPORT -dp \
+http -ts 100 -am "Report Only" -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450008 -n CON_100_HTTPS_REPORT -dp \
+https -ts 100 -am "Report Only" -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450009 -n CON_50_HTTP_BLOCK -dp \
+http -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450010 -n CON_50_HTTP_REPORT -dp \
+http -am "Report Only" -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450011 -n CON_50_HTTPS_BLOCK -dp \
+https -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450012 -n CON_50_HTTPS_REPORT -dp \
+https -am "Report Only" -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450013 -n CON_20_HTTP_BLOCK -dp \
+http -ts 20 -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450014 -n CON_20_HTTP_REPORT -dp \
+http -ts 20 -am "Report Only" -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450015 -n CON_20_HTTPS_BLOCK -dp \
+https -ts 20 -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450016 -n CON_20_HTTPS_REPORT -dp \
+https -ts 20 -am "Report Only" -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450017 -n CON_75_HTTP_BLOCK -dp \
+http -ts 75 -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450018 -n CON_75_HTTP_REPORT -dp \
+http -ts 75 -am "Report Only" -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450019 -n CON_75_HTTPS_BLOCK -dp \
+https -ts 75 -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450020 -n CON_75_HTTPS_REPORT -dp \
+https -ts 75 -am "Report Only" -pr enable -sa SrcIP
+dp connection-limit attack setCreate 450021 -n CON_50_HTTP_8081_50_BLOCK \
+-dp http_8080_1
+dp connection-limit attack setCreate 450022 -n UDP_5000 -p udp -ts 500 \
+-pr enable -sa SrcIP
+dp connection-limit attack setCreate 450023 -n TEST_PPS -dp \
+All_TCP_Ports -ts 40000 -tty "Target Count"
+dp connection-limit attack setCreate 450024 -n UDP_BLOCK -p udp -ts 10 \
+-pr enable
+hidden Connection Limiting profiles setCreate IS-HTTP_HTTPS_50_REPO\
+ CON_50_HTTPS_REPORT -psi 450012
+hidden Connection Limiting profiles setCreate IS-HTTP_HTTPS_50_REPO\
+ CON_50_HTTP_REPORT -psi 450010
+hidden Connection Limiting profiles setCreate IS-HTTP_HTTPS_50_BLOCK\
+ CON_50_HTTP_BLOCK -psi 450009
+hidden Connection Limiting profiles setCreate IS-HTTP_HTTPS_50_BLOCK\
+ CON_50_HTTPS_BLOCK -psi 450011
+hidden Connection Limiting profiles setCreate KLIE-HTTP_HTTPS_50_BLOCK\
+ CON_50_HTTPS_BLOCK -psi 450011
+hidden Connection Limiting profiles setCreate KLIE-HTTP_HTTPS_50_BLOCK\
+ CON_50_HTTP_BLOCK -psi 450009
+hidden Connection Limiting profiles setCreate KLIE-HTTP_HTTPS_50_REPO\
+ CON_50_HTTPS_REPORT -psi 450012
+hidden Connection Limiting profiles setCreate KLIE-HTTP_HTTPS_50_REPO\
+ CON_50_HTTP_REPORT -psi 450010
+hidden Connection Limiting profiles setCreate IS-HTTP_HTTPS_75_BLOCK\
+ CON_75_HTTPS_BLOCK -psi 450019
+hidden Connection Limiting profiles setCreate IS-HTTP_HTTPS_75_BLOCK\
+ CON_75_HTTP_BLOCK -psi 450017
+hidden Connection Limiting profiles setCreate IS-HTTP_HTTPS_75_REPO\
+ CON_75_HTTPS_REPORT -psi 450020
+hidden Connection Limiting profiles setCreate IS-HTTP_HTTPS_75_REPO\
+ CON_75_HTTP_REPORT -psi 450018
+hidden Connection Limiting profiles setCreate KLIE-HTTP_HTTPS_75_BLOCK\
+ CON_75_HTTPS_BLOCK -psi 450019
+hidden Connection Limiting profiles setCreate KLIE-HTTP_HTTPS_75_BLOCK\
+ CON_75_HTTP_BLOCK -psi 450017
+hidden Connection Limiting profiles setCreate KLIE-HTTP_HTTPS_75_REPO\
+ CON_75_HTTPS_REPORT -psi 450020
+hidden Connection Limiting profiles setCreate KLIE-HTTP_HTTPS_75_REPO\
+ CON_75_HTTP_REPORT -psi 450018
+hidden Connection Limiting profiles setCreate KLIE-HTTP_HTTPS_100_REPO\
+ CON_100_HTTPS_REPORT -psi 450008
+hidden Connection Limiting profiles setCreate KLIE-HTTP_HTTPS_100_REPO\
+ CON_100_HTTP_REPORT -psi 450007
+hidden Connection Limiting profiles setCreate KLIE-HTTP_HTTPS_100_BLOCK\
+ CON_100_HTTPS_BLOCK -psi 450006
+hidden Connection Limiting profiles setCreate KLIE-HTTP_HTTPS_100_BLOCK\
+ CON_100_HTTP_BLOCK -psi 450005
+hidden Connection Limiting profiles setCreate KLIE-HTTP_HTTPS_20_BLOCK\
+ CON_20_HTTPS_BLOCK -psi 450015
+hidden Connection Limiting profiles setCreate KLIE-HTTP_HTTPS_20_BLOCK\
+ CON_20_HTTP_BLOCK -psi 450013
+hidden Connection Limiting profiles setCreate IS-HTTP_HTTPS_100_BLOCK\
+ CON_100_HTTPS_BLOCK -psi 450006
+hidden Connection Limiting profiles setCreate IS-HTTP_HTTPS_100_BLOCK\
+ CON_100_HTTP_BLOCK -psi 450005
+hidden Connection Limiting profiles setCreate IS-HTTP_HTTPS_100_REPO\
+ CON_100_HTTPS_REPORT -psi 450008
+hidden Connection Limiting profiles setCreate IS-HTTP_HTTPS_100_REPO\
+ CON_100_HTTP_REPORT -psi 450007
+hidden Connection Limiting profiles setCreate KLIE_CUSTOM_HI\
+ CON_50_HTTPS_BLOCK -psi 450011
+hidden Connection Limiting profiles setCreate KLIE_CUSTOM_HI\
+ CON_50_HTTP_8081_50_BLOCK -psi 450021
+hidden Connection Limiting profiles setCreate KLIE_CUSTOM_HI\
+ CON_50_HTTP_BLOCK -psi 450009
+hidden Connection Limiting profiles setCreate PPS UDP_5000 -psi 450022
+hidden Connection Limiting profiles setCreate TEST TEST_PPS -psi 450023
+hidden Connection Limiting profiles setCreate IS_WAF1 UDP_BLOCK -psi \
+450024
+manage ssh session-timeout set 120
+manage telnet session-timeout set 5
+manage telnet auth-timeout set 30
+system diagnostics policies setCreate all -i 5 -cap Disabled -pn 500000
+system diagnostics policies setCreate Capture -pn 1000000
+system diagnostics capture output file set "RAM Drive"
+system diagnostics capture output term set Disabled
+system diagnostics capture point set Both
+device dynamic-protocols tftp status set Enabled
+device high-availability status set disable
+manage syslog global-status set Enabled
+manage syslog destinations create 10.100.20.38
+manage syslog destinations create 10.101.111.215 -sss Disabled
+dp packet-anomalies table set 103 -ra process
+dp packet-anomalies table set 104 -ac block -ra bypass
+dp packet-anomalies table set 107 -ra bypass
+dp packet-anomalies table set 113 -ac block -ra process
+dp packet-anomalies table set 125 -ac block -ra process
+dp packet-anomalies table set 131 -ac block -rs Low -ra bypass
+dp packet-anomalies table set 105 -ac no-report -ra process
+dp packet-anomalies table set 108 -ra process
+dp packet-anomalies table set 119 -ac block -rs Low -ra process
+dp packet-anomalies table set 120 -ac block -rs Low -ra process
+dp packet-anomalies table set 110 -rs Low -ra process
+dp packet-anomalies table set 100 -rs Low -ra bypass
+dp policies-config table setCreate IS-MAIL -sn any_ipv4 -dn IS_NET_MAIL \
+-pr enable -sig IS_MAIL -con "" -oos OOS_5k -sca "" -dos BDOS_IS_MAIL -syn \
+"" -dns "" -sd "" -p 660
+dp policies-config table setCreate IS-DNS -sn any_ipv4 -dn IS_NET_DNS -a \
+"Report Only" -pr enable -sig IS_DNS_NTP -con "" -oos OOS_5k -sca "" -dos\
+ "" -syn "" -dns IS_DNS-Prod -sd "" -p 590
+dp policies-config table setCreate IS_WAF1 -sn any_ipv4 -dn IS_NET_WAF1 \
+-pr enable -sig IS_WAF1 -con IS_WAF1 -oos OOS_5k -sca "" -dos BDOS_WAF1 \
+-syn HTTP-HTTPS_100 -dns "" -sd "" -p 650
+dp policies-config table setCreate IS_WWW -sn any_ipv4 -dn IS_NET_WWW -pr \
+enable -sig IS_WWW -con "" -oos OOS_5k -sca "" -dos BDOS_IS_WWW -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -p 603
+dp policies-config table setCreate KLIE_FINMIN -sn any_ipv4 -dn \
+NET_FINMIN -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDoS_FINMIN -syn HTTP-HTTPS_100 -dns "" -sd "" -p 535
+dp policies-config table setCreate KLIE_IVPK -sn any_ipv4 -dn NET_IVPK \
+-pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_IVPK -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -p 500
+dp policies-config table setCreate KLIE_KAM -sn any_ipv4 -dn NET_KAM -pr \
+enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_KAM -syn \
+HTTP_HTTPS_2500 -dns "" -sd "" -ins "Instance 1" -p 580
+dp policies-config table setCreate KLIE_LB -sn any_ipv4 -dn NET_LB -pr \
+enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_LB -syn \
+HTTP-HTTPS_100 -dns LB_Bdos_DNS -sd "" -p 800
+dp policies-config table setCreate KLIE_VKEEK -sn any_ipv4 -dn NET_VKEEK \
+-pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_VKEEK -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 355
+dp policies-config table setCreate KLIE_NMA -sn any_ipv4 -dn NET_NMA -pr \
+enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_NMA -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -p 345
+dp policies-config table setCreate KLIE_POLICIJA -sn any_ipv4 -dn \
+NET_POLICIJA -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDoS_POLICIJA -syn HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 390
+dp policies-config table setCreate KLIE_STATISTIKA -sn any_ipv4 -dn \
+NET_STATISTIKA -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDoS_STATISTIKA -syn HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p \
+380
+dp policies-config table setCreate KLIE_SUMIN -sn any_ipv4 -dn NET_SUMIN \
+-pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_SUMIN -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -p 370
+dp policies-config table setCreate KLIE_VPT -sn any_ipv4 -dn NET_VPT -pr \
+enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_VPT -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -p 577
+dp policies-config table setCreate KLIE_VRM_IRD -sn any_ipv4 -dn \
+NET_VRM_IRD -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDoS_VRM_IRD -syn HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 585
+dp policies-config table setCreate DEVICE_GLOBAL_0 -sn any_ipv4 -dn \
+ALL_NET_Instance_0 -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDoS_GLOBAL_0 -syn SYN_GLOBAL -dns "" -sd "" -p 301
+dp policies-config table setCreate DEVICE_GLOBAL_1 -sn any_ipv4 -dn \
+ALL_NET_Instance_1 -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDoS_GLOBAL_1 -syn SYN_GLOBAL -dns "" -sd "" -ins "Instance 1" -p 300
+dp policies-config table setCreate KLIE_STT -sn any_ipv4 -dn NET_STT -pr \
+enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_STT -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 320
+dp policies-config table setCreate KLIE_NTA -sn any_ipv4 -dn NET_NTA -pr \
+enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_NTA -syn \
+HTTP_HTTPS_2500 -dns "" -sd "" -ins "Instance 1" -p 400
+dp policies-config table setCreate KLIE_VMI -sn any_ipv4 -dn NET_VMI -pr \
+enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_VMI -syn \
+HTTP_HTTPS_2500 -dns "" -sd "" -p 570
+dp policies-config table setCreate KLIE_VKONTROLE -sn any_ipv4 -dn \
+NET_VKONTROLE -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDOS_VKONTROLE -syn HTTP-HTTPS_100 -dns "" -sd "" -p 504
+dp policies-config table setCreate KLIE_RRT -sn any_ipv4 -dn NET_RRT -pr \
+enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_RRT -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -p 502
+dp policies-config table setCreate IPV6 -sn any_ipv6 -dn ALL-NET-IPV6 -a \
+"Report Only" -pr enable -sig "" -con "" -oos "" -sca "" -dos BDoS_IPV6 \
+-syn "" -dns "" -sd "" -p 200
+dp policies-config table setCreate KLIE_GIS -sn any_ipv4 -dn NET_GIS -pr \
+enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_GIS -syn \
+HTTP_HTTPS_2500 -dns "" -sd "" -ins "Instance 1" -p 310
+dp policies-config table setCreate KLIE_FILHARM -sn any_ipv4 -dn \
+NET_FILHARM -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDoS_FILHARM -syn HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 315
+dp policies-config table setCreate KLIE_SAM -sn any_ipv4 -dn NET_SAM -pr \
+enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_SAM -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -p 351
+dp policies-config table setCreate KLIE_UKMIN -sn any_ipv4 -dn NET_UKMIN \
+-pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_UKMIN -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -p 325
+dp policies-config table setCreate KLIE_NDNT -sn any_ipv4 -dn NET_NDNT \
+-pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos KLIE_NDNT -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 520
+dp policies-config table setCreate KLIE_PROKURATURA -sn any_ipv4 -dn \
+NET_PROKURATURA -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDoS_PROKURATURA -syn HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p \
+490
+dp policies-config table setCreate KLIE_VDTAT -sn any_ipv4 -dn NET_VDTAT \
+-pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_VDTAT -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 323
+dp policies-config table setCreate IS_WWW2 -sn any_ipv4 -dn IS_NET_WWW2 \
+-pr enable -sig IS_WWW -con "" -oos OOS_5k -sca "" -dos BDoS_IS_WWW_KALV \
+-syn HTTP-HTTPS_100 -dns "" -sd "" -p 604
+dp policies-config table setCreate KLIE_ZUM -sn any_ipv4 -dn NET_ZUM -pr \
+enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_ZUM -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -p 572
+dp policies-config table setCreate KLIE_ZT_ZUM -sn any_ipv4 -dn \
+NET_ZT_ZUM -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDoS_ZT_ZUM -syn HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 510
+dp policies-config table setCreate KLIE_URM -sn any_ipv4 -dn NET_URM -pr \
+enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_URM -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -p 560
+dp policies-config table setCreate IS_Test -sn any_ipv4 -dn IS_NET_TEST \
+-pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_IS_Test -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 900
+dp policies-config table setCreate KLIE_LRP -sn any_ipv4 -dn NET_LRP -sig \
+DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_LRP -syn HTTP-HTTPS_100 -dns \
+"" -sd "" -p 540
+dp policies-config table setCreate KLIE_KAUN_SAV -sn any_ipv4 -dn \
+NET_KAUN_SAV -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDoS_KAUN_SAV -syn HTTP-HTTPS_100 -dns "" -sd "" -p 525
+dp policies-config table setCreate KLIE_KULTMIN -sn any_ipv4 -dn \
+NET_KULTMIN -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDoS_KULTMIN -syn HTTP-HTTPS_100 -dns "" -sd "" -p 305
+dp policies-config table setCreate KLIE_TEISMIN -sn any_ipv4 -dn \
+NET_TEISMIN -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDoS_TEISMIN -syn HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 361
+dp policies-config table setCreate KLIE_LRVK -sn any_ipv4 -dn NET_LRVK \
+-pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_LRVK -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -p 326
+dp policies-config table setCreate KLIE_SADM -sn any_ipv4 -dn NET_SADM \
+-pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_SADM -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 537
+dp policies-config table setCreate KLIE_HIGINS -sn any_ipv4 -dn \
+NET_HIGINS -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_HIGINS -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 319
+dp policies-config table setCreate KLIE_PANE_SAV -sn any_ipv4 -dn \
+NET_PANE_SAV -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_PANE_SAV \
+-syn HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 505
+dp policies-config table setCreate KLIE_PANE_RSAV -sn any_ipv4 -dn \
+NET_PANE_RSAV -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_PANE_RSAV \
+-syn HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 503
+dp policies-config table setCreate KLIE_SIAU_SAV -sn any_ipv4 -dn \
+NET_SIAU_SAV -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_SIAU_SAV \
+-syn HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 347
+dp policies-config table setCreate KLIE_SIRV_RSAV -sn any_ipv4 -dn \
+NET_SIRV_RSAV -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_SIRV_RSAV \
+-syn HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 507
+dp policies-config table setCreate KLIE_UTEN_RSAV -sn any_ipv4 -dn \
+NET_UTEN_RSAV -sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_UTEN_RSAV \
+-syn HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 506
+dp policies-config table setCreate KLIE_VILN_SAV -sn any_ipv4 -dn \
+NET_VILN_SAV -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDoS_VILN_SAV -syn HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 508
+dp policies-config table setCreate KLIE_KPD -sn any_ipv4 -dn NET_KPD -sig \
+DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_KPD -syn HTTP-HTTPS_100 -dns \
+"" -sd "" -p 680
+dp policies-config table setCreate KLIE_KAUN_RSAV -sn any_ipv4 -dn \
+NET_KAUN_RSAV -pr enable -sig DoS-All -con "" -oos OOS_5k -sca "" -dos \
+BDoS_KAUN_RSAV -syn HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 530
+dp policies-config table setCreate KLIE_SODRA -sn any_ipv4 -dn NET_SODRA \
+-sig DoS-All -con "" -oos OOS_5k -sca "" -dos BDoS_SODRA -syn \
+HTTP-HTTPS_100 -dns "" -sd "" -ins "Instance 1" -p 720
+dp reporting data-report address setCreate 10.100.64.145
+dp reporting data-report address setCreate 10.101.111.201
+dp http-mitigator global learning-pre-activation set 7
+dp http-mitigator global learning-mode set automatic
+dp http-mitigator global learning-sensitivity set week
+dp http-mitigator advanced mitigation-fail-cond set 3
+dp server-protection protected-servers create IS_SERVERS -pr enable -dst \
+IS_NET_WWW -net N/A -lvt 0 -pn IS_WWW
+dp server-protection protected-servers create KLIE_ZT_ZUM_SRV1 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 195.182.65.13 -net N/A -lvt 0 -pn \
+KLIE_ZT_ZUM
+dp server-protection protected-servers create KLIE_ZT_ZUM_SRV2 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 195.182.65.15 -net N/A -lvt 0 -pn \
+KLIE_ZT_ZUM
+dp server-protection protected-servers create KLIE_ZT_ZUM_SRV3 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 195.182.65.16 -net N/A -lvt 0 -pn \
+KLIE_ZT_ZUM
+dp server-protection protected-servers create KLIE_ZT_ZUM_SRV4 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 195.182.65.21 -net N/A -lvt 0 -pn \
+KLIE_ZT_ZUM
+dp server-protection protected-servers create KLIE_LRP_SRV1 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 195.182.64.8 -net N/A -lvt 0 -pn \
+KLIE_LRP
+dp server-protection protected-servers create KLIE_LRP_SRV2 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 195.182.64.9 -net N/A -lvt 0 -pn \
+KLIE_LRP
+dp server-protection protected-servers create KLIE_FILHARM_SRV1 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 195.182.69.60 -net N/A -lvt 0 -pn \
+KLIE_FILHARM
+dp server-protection protected-servers create KLIE_FILHARM_SRV2 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 195.182.69.61 -net N/A -lvt 0 -pn \
+KLIE_FILHARM
+dp server-protection protected-servers create KLIE_PANE_SAV_SRV1 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 195.182.88.227 -net N/A -lvt 0 -pn \
+KLIE_PANE_SAV
+dp server-protection protected-servers create KLIE_VILN_SAV_SRV1 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 195.182.82.73 -net N/A -lvt 0 -pn \
+KLIE_VILN_SAV
+dp server-protection protected-servers create KLIE_PROKURATURA_SRV1 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 195.182.95.234 -net N/A -lvt 0 -pn \
+KLIE_PROKURATURA
+dp server-protection protected-servers create KLIE_STATISTIKA_SRV1 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 193.219.12.227 -net N/A -lvt 0 -pn \
+KLIE_STATISTIKA
+dp server-protection protected-servers create KLIE_STATISTIKA_SRV2 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 193.219.12.228 -net N/A -lvt 0 -pn \
+KLIE_STATISTIKA
+dp server-protection protected-servers create KLIE_STATISTIKA_SRV3 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 193.219.12.230 -net N/A -lvt 0 -pn \
+KLIE_STATISTIKA
+dp server-protection protected-servers create KLIE_STATISTIKA_SRV4 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 193.219.12.234 -net N/A -lvt 0 -pn \
+KLIE_STATISTIKA
+dp server-protection protected-servers create KLIE_STATISTIKA_SRV5 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 193.219.12.235 -net N/A -lvt 0 -pn \
+KLIE_STATISTIKA
+dp server-protection protected-servers create KLIE_STATISTIKA_SRV6 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 193.219.12.236 -net N/A -lvt 0 -pn \
+KLIE_STATISTIKA
+dp server-protection protected-servers create KLIE_STATISTIKA_SRV7 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 193.219.12.240 -net N/A -lvt 0 -pn \
+KLIE_STATISTIKA
+dp server-protection protected-servers create KLIE_STATISTIKA_SRV8 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 193.219.12.242 -net N/A -lvt 0 -pn \
+KLIE_STATISTIKA
+dp server-protection protected-servers create KLIE_STATISTIKA_SRV9 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 193.219.12.245 -net N/A -lvt 0 -pn \
+KLIE_STATISTIKA
+dp server-protection protected-servers create KLIE_STATISTIKA_SRV10 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 193.219.12.246 -net N/A -lvt 0 -pn \
+KLIE_STATISTIKA
+dp server-protection protected-servers create KLIE_STATISTIKA_SRV11 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 193.219.12.250 -net N/A -lvt 0 -pn \
+KLIE_STATISTIKA
+dp server-protection protected-servers create KLIE_STATISTIKA_SRV12 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 193.219.12.252 -net N/A -lvt 0 -pn \
+KLIE_STATISTIKA
+dp server-protection protected-servers create KLIE_IVPK_SRV1 -http \
+HTTP_FLOOD_REPORT -pr enable -dst 195.192.95.144 -net N/A -lvt 0 -pn \
+KLIE_IVPK
+dp server-protection protected-servers create KLIE_IVPK_SRV2 -http \
+HTTP_FLOOD_REPORT -dst 195.192.95.145 -net N/A -lvt 0 -pn KLIE_IVPK
+dp server-protection protected-servers create KLIE_IVPK_SRV3 -http \
+HTTP_FLOOD_REPORT -dst 195.192.95.141 -net N/A -lvt 0 -pn KLIE_IVPK
+dp server-protection protected-servers create KLIE_IVPK_SRV4 -http \
+HTTP_FLOOD_REPORT -dst 195.192.68.187 -net N/A -lvt 0 -pn KLIE_IVPK
+dp server-protection protected-servers create KLIE_IVPK_SRV5 -http \
+HTTP_FLOOD_REPORT -dst 195.192.68.186 -net N/A -lvt 0 -pn KLIE_IVPK
+dp server-protection protected-servers create KLIE_FINMIN_SRV1 -http \
+HTTP_FLOOD_REPORT -dst 195.182.66.65 -net N/A -lvt 0 -pn KLIE_FINMIN
+dp server-protection protected-servers create KLIE_FINMIN_SRV2 -http \
+HTTP_FLOOD_REPORT -dst 195.182.66.66 -net N/A -lvt 0 -pn KLIE_FINMIN
+dp server-protection protected-servers create KLIE_FINMIN_SRV3 -http \
+HTTP_FLOOD_REPORT -dst 195.182.66.68 -net N/A -lvt 0 -pn KLIE_FINMIN
+dp server-protection protected-servers create KKLIE_FINMIN_SRV4 -http \
+HTTP_FLOOD_REPORT -dst 195.182.66.71 -net N/A -lvt 0 -pn KLIE_FINMIN
+dp server-protection protected-servers create KLIE_FINMIN_SRV5 -http \
+HTTP_FLOOD_REPORT -dst 195.182.66.72 -net N/A -lvt 0 -pn KLIE_FINMIN
+dp http-mitigator advanced profile-configuration create\
+ Manual_immediately -pr enable -mts active -gps 100 -ots 10 -rps 15 -sst 3 \
+-cst 3 -cm JavaScript
+dp http-mitigator advanced profile-configuration create HTTP_FLOOD_BLOCK \
+-pr enable -cc disable
+dp http-mitigator advanced profile-configuration create HTTP_FLOOD_REPORT \
+-ac "Report Only" -pr enable -cc disable
+dp black-white-lists black-list table create TOP_ATTACK_SOURCES -sn \
+BL_TOP_ATTACK_SOURCES -dn any_ipv4 -a drop -et 0
+redundancy config-sync sync-session-password set\
+ A+Suhf/cphu9hyGY5mapbR1y+WzwJ5S5
+redundancy config-sync conn-preference set all
+dp dns-protection global advanced profiles create IS_DNS-Prod -dns_a \
+active -dns_mx active -dns_ptr active -dns_aaaa active -dns_text active \
+-dns_soa active -dns_naptr active -dns_srv active -dns_other active -qps \
+3000 -dns_a_quota 90 -dns_mx_quota 45 -dns_ptr_quota 45 -dns_aaaa_quota 15 \
+-dns_text_quota 8 -dns_soa_quota 2 -dns_naptr_quota 2 -dns_srv_quota 2 \
+-dns_other_quota 10 -max_qps 50000 -sig_rate 50 -packet_report enable
+dp dns-protection global advanced profiles create LB_Bdos_DNS -qps 100 \
+-dns_a_quota 90 -dns_mx_quota 45 -dns_ptr_quota 45 -dns_aaaa_quota 15 \
+-dns_text_quota 8 -dns_soa_quota 2 -dns_naptr_quota 2 -dns_srv_quota 2 \
+-dns_other_quota 2 -max_qps 200 -mn_st enable -mn_acth 150 -mn_trth 100 \
+-mn_qps 400 -mn_acp 1 -packet_report enable
+dp dns-protection global advanced footprint-strictness set medium
+hidden profiles params create http_300 -ath safe-reset -httpath enable
+hidden profiles params create SYN_GLOBAL -ath safe-reset -httpath enable \
+-reset enable
+hidden profiles params create HTTP-HTTPS_100 -ath safe-reset -httpath \
+enable -httpm "Advanced JavaScript" -reset enable
+hidden profiles params create HTTP-HTTPS_50 -ath safe-reset -httpath \
+enable
+hidden profiles params create HTTP-HTTPS_30 -ath safe-reset -httpath \
+enable -httpm "Advanced JavaScript" -reset enable
+hidden profiles params create HTTP-HTTPS_100_JAVA -ath safe-reset \
+-httpath enable -httpm JavaScript
+hidden profiles params create HTTP-HTTPS_50_JAVA -ath safe-reset -httpath \
+enable -httpm JavaScript
+hidden profiles params create HTTP-HTTPS_30_JAVA -ath safe-reset -httpath \
+enable -httpm JavaScript
+hidden profiles params create ALL_2500_JAV -ath safe-reset -httpath \
+enable -httpm JavaScript
+hidden profiles params create ALL_2500_RED -ath safe-reset -httpath \
+enable
+hidden profiles params create ALL_2000_JAV -ath safe-reset -httpath \
+enable -httpm JavaScript
+hidden profiles params create ALL_2000_RED -ath safe-reset -httpath \
+enable
+hidden profiles params create ALL_1500_JAV -ath safe-reset -httpath \
+enable -httpm JavaScript
+hidden profiles params create ALL_1500_RED -ath safe-reset -httpath \
+enable
+hidden profiles params create ALL_1000_JAV -ath safe-reset -httpath \
+enable -httpm JavaScript
+hidden profiles params create ALL_1000_RED -ath safe-reset -httpath \
+enable -httpm JavaScript
+hidden profiles params create ALL_800_JAV -ath safe-reset -httpath \
+enable -httpm JavaScript
+hidden profiles params create ALL_800_RED -ath safe-reset -httpath \
+enable
+hidden profiles params create ALL_500_JAV -ath safe-reset -httpath \
+enable -httpm JavaScript
+hidden profiles params create ALL_500_RED -ath safe-reset -httpath \
+enable
+hidden profiles params create ALL_250_JAV -httpath enable -reset enable
+hidden profiles params create ALL_250_RED -ath safe-reset -httpath \
+enable
+hidden profiles params create ALL_100_JAV -ath safe-reset -httpath \
+enable -httpm JavaScript
+hidden profiles params create ALL_100_RED -ath safe-reset -httpath \
+enable
+hidden profiles params create ALL_50_JAV -ath safe-reset -httpath enable \
+-httpm JavaScript
+hidden profiles params create ALL_50_RED -ath safe-reset -httpath enable
+hidden profiles params create HTTP_HTTPS_2500 -ath safe-reset -httpath \
+enable -reset enable
+hidden profiles params create SYN_ALL -ath safe-reset -httpath enable \
+-reset enable
+hidden profiles params create HTTP-HTTPS_1 -ath safe-reset -httpath \
+enable -httpm "Advanced JavaScript" -reset enable
+hidden profiles params create igor_test -ath safe-reset -httpath enable \
+-httpm "Advanced JavaScript" -reset enable
+hidden profiles params create Test_RZ -ath safe-reset -httpath enable \
+-httpm "Advanced JavaScript" -reset enable
+dp behavioral-DoS global advanced learning suppression threshold set 50
+security certificate table \
+Name: radware \
+Type: certificate \
+-----BEGIN CERTIFICATE----- \
+MIIDZzCCAk8CBBgKL50wDQYJKoZIhvcNAQELBQAweDELMAkGA1UEBhMCVVMxEDAO \
+BgNVBAgMB1JhZHdhcmUxEDAOBgNVBAcMB1JhZHdhcmUxFjAUBgNVBAMMDTEwLjEw \
+MC4yMC4xOTUxEDAOBgNVBAoMB1JhZHdhcmUxGzAZBgNVBAsMElJhZHdhcmUgd2Vi \
+IHNlcnZlcjAeFw0xNzAzMjgyMTQ0MjdaFw0xODAzMjgyMTQ0MjdaMHgxCzAJBgNV \
+BAYTAlVTMRAwDgYDVQQIDAdSYWR3YXJlMRAwDgYDVQQHDAdSYWR3YXJlMRYwFAYD \
+VQQDDA0xMC4xMDAuMjAuMTk1MRAwDgYDVQQKDAdSYWR3YXJlMRswGQYDVQQLDBJS \
+YWR3YXJlIHdlYiBzZXJ2ZXIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB \
+AQDMD38cIezhj7yKLkZ3VLSAgojXukIOqBuIrzCZuCyZ/lHwOQVDQ6ij4qyO4xTo \
+yUqqOJhbrh3bP0Lsuw388PQmG+hQR/N3UMnn6yqmbm5THzfPkvevcd9I+Cu672iq \
+kOHXmkspiN5Iw4uyt55Ds4FvhTuWBFdF+6NFr1U+At+WzakUPQiPE1H20OlO5A+z \
+sPG+JTKG+Vt7RT0dTFcFUnm1U7M7YKZ5UheMa0a5OrVkuoi8huzSbOdiT+Hd80xy \
+jhZqR6Dfm63WrxCIY/TmTi8Isj8s7mv9q5B+XEHptIOZz5yY2i1HTBDZw3xwpNwH \
+vaIin8WwMcTdQlOt5rhcTZilAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAFWWmQ+d \
+FMtip7Y7fwsfuUxrvk5yyM4C1uvJM0YB2/LlOaNdQpUSbYdnKuGd8/gz3V/EynsZ \
+i0gAXNYwu+Dma1BAQfD1pRQrijpMBKbvRbenpvprCffrbnzpNS5M+On27Z8Efif+ \
+8INiHaZteRY4HqQ4lRqG1HlVoqz6z228KTCxa+udoLzMqt62WzcavVXsVk5Ua5/N \
+PqejvvwhYhHVZonlZGBYppxNNYdp12fB90+o//69OwP8UfMkK4Hpjfnf79Sq0TEo \
+W1FMvG8TebQgDjABqxs2ZapSeQxUGroW7IX6gat4o0uPKO2Mn91SSnzqVxwVzMur \
+6DXMgtREE31ryWw= \
+-----END CERTIFICATE----- 
+
+!File Signature: 9a21fb3429c5d9da10eb0aba2dede5e0
+
+
+
