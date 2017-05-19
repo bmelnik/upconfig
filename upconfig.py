@@ -4,7 +4,6 @@ import ipaddress
 from Tkinter import Tk
 from tkFileDialog import askopenfilename
 
-
 def path():
     Tk().withdraw()
     return askopenfilename()  # show an "Open" dialog box and return the path to the selected file
@@ -17,11 +16,11 @@ def unTar():
     tar.close()
     return content
 
-
-## Change number 1
-
-startConfig = unTar().split("!Device Configuration")[1]
-config = startConfig.split("------------")[0]  # cutting the Configuration out of the support file.
+def config():
+    config = unTar().split("!Device Configuration")[1]
+    config = config.split("------------")[0]  # cutting the Configuration out of the support file.
+    return config
+config = config()
 
 IP = str(ipaddress.ip_address(unicode(raw_input("Input IP Address: "))))
 Mask = str(int(unicode(raw_input("Input Prefix or Subnet Mask: "))))
@@ -31,16 +30,23 @@ GW = str(ipaddress.ip_address(unicode(raw_input("Input Default Gateway: "))))
 r1 = re.sub(r'net ip-interface create [0-9].*',
            "net ip-interface create " + IP + ' ' + Mask + ' ' + Interface, config)
 
-r2 = re.sub(r'net route table create [0-9].*', "net route table create 0.0.0.0 0.0.0.0 " + GW + ' -i ' + Interface, r1)
+r2 = re.sub(r'net route table create [0-9].*',
+            "net route table create 0.0.0.0 0.0.0.0 " + GW + ' -i ' + Interface, config)
 
-r3 = re.sub(r'')
+def snmp():
+    defaultSnmp = """manage snmp groups create SNMPv2c public -gn initial
+    manage snmp access create initial SNMPv2c noAuthNoPriv -rvn iso -wvn iso -nvn iso
+    manage snmp views create iso 1
+    manage snmp notify create allTraps -ta v3Traps
+    manage snmp community create public -n public -sn public"""
+    config = r2
+    r1 = config.split("manage web-services status set enable")[1]
+    r1 = r1.split("services auditing status set Enabled")[0]
+    config = re.sub(r1, '\nd-snmp\n', config)
+    config = re.sub(r'd-snmp', defaultSnmp, config)
+    return config
+# config = re.sub(r'manage snmp [a-z].* create .*', '', config)
 
+print snmp()
 
-
-
-print r2
-
-open("Test_CFG.txt", 'wb').write(r2)
-outputFile = open("Test_CFG.txt", "w")
-outputFile.write(r2)
-outputFile.close()
+open("Test_CFG.txt", 'wb').write(config)
