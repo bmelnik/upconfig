@@ -1,5 +1,4 @@
-from tkinter import *
-from Tkinter import Tk
+from Tkinter import *
 from tkFileDialog import askopenfilename, asksaveasfilename
 import re
 import tarfile
@@ -41,6 +40,9 @@ def show_entry_fields():
     open(pathSave(), 'wb').write(config)
 
 master = Tk()
+master.title("UpConfig")
+master.minsize(300, 120)
+
 Label(master, text="Input IP Address: ").grid(row=0)
 Label(master, text="Input Prefix or Subnet Mask: ").grid(row=1)
 Label(master, text="Input MNG Interface Number: ").grid(row=2)
@@ -51,13 +53,13 @@ e2 = Entry(master)
 e3 = Entry(master)
 e4 = Entry(master)
 
-
 e1.grid(row=0, column=1)
 e2.grid(row=1, column=1)
 e3.grid(row=2, column=1)
 e4.grid(row=3, column=1)
 
-Button(master, text='Quit', command=master.quit).grid(row=4, column=0, sticky=W, pady=4)
-Button(master, text='Go !', command=show_entry_fields).grid(row=4, column=1, sticky=W, pady=4)
+Button(master, text='Quit', command=master.quit, fg="red", bg="yellow").grid(row=4, column=0, sticky=N, pady=4)
+Button(master, text='Go !', command=show_entry_fields).grid(row=4, column=1, sticky=N, pady=4)
+
 
 mainloop()
