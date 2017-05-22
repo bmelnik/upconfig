@@ -13,7 +13,7 @@
 !
 
 dp reporting packet-report status set enable
-manage snmp versions-after-reset set "v1 & v2c & v3"
+!
 system tune syn-protection syn-protection set 300000
 system tune syn-protection requests set 300000
 system tune syn-protection syn-flood-detect set 20000
@@ -45,8 +45,8 @@ dp dns-protection global status set enable
 !
 
 
-net ip-interface create 10.100.20.195 29 25
-net route table create 0.0.0.0 0.0.0.0 10.100.20.193 -i 25
+net ip-interface create 10.176.246.210 16 25
+net route table create 0.0.0.0 0.0.0.0 10.176.254.254 -i 25
 device static-forwarding-table setCreate 1 -dst 2 -op Process
 device static-forwarding-table setCreate 2 -dst 1 -op Process -t Destination
 device static-forwarding-table setCreate 3 -dst 4 -op Process
@@ -263,13 +263,13 @@ services ntp polling-interval set 3600
 services ntp status set enable
 services ntp time-zone set 02:00
 services ntp server-port set 123
-manage user table create sync-master -pw A+Suhf/cphu9hyGY5mapbR1y+WzwJ5S5
-manage user table create int-sync-master -pw OB/jUNumbdoyQF84RTVBK6Yvx2LlaUkb
-manage user table create rimvis -pw VViwpL+bGHDyVBlnaujzsO5J6hWEg+Ae
-manage user table create spectrum -pw GHV7Zh1V0IoNz7XWCnLOmyCxHyNezpCp
-manage user table create zygis -pw wpzr44cnl/SRthi1uV1WRJdeLXBnvV7A
-manage user table create saugosdep -pw VyT74UngbZMAe4b4jCaNuThg3Gf6WNtj -ua readonly
-manage user table create rolandas -pw BygpgNq+V5YiP83BzUoScGMZIa8nDqOK
+!
+!
+!
+!
+!
+!
+!
 manage telnet status set enable
 manage telnet server-port set 23
 manage web status set enable
@@ -305,8 +305,8 @@ services dns client primary-server set 195.182.81.20
 services dns client alt-server set 195.182.81.19
 services dns client status set Enabled
 services ntp server-name set 10.100.1.21
-manage snmp port set 161
-manage snmp status set Enabled
+!
+!
 statistics protocol management-ip set 10.100.64.145
 net l2-interface set 23 -ad up
 net l2-interface set 9 -ad up -ifd VilnKalvEdge
@@ -321,40 +321,40 @@ services daylight-saving begins set 01/04:2
 services daylight-saving ends set 27/10:2
 services daylight-saving status set enabled
 manage web-services status set enable
-manage snmp groups create SNMPv1 public -gn initial
-manage snmp groups create SNMPv1 ReadOnlySecurity -gn InitialReadOnly
-manage snmp groups create SNMPv2c public -gn initial
-manage snmp groups create SNMPv2c ReadOnlySecurity -gn InitialReadOnly
-manage snmp groups create UserBased radware -gn initial
-manage snmp groups create UserBased ReadOnlySecurity -gn InitialReadOnly
-manage snmp groups create SNMPv2c snmpconfig -gn initial
-manage snmp groups create SNMPv1 snmpconfig -gn initial
-manage snmp access create initial SNMPv1 noAuthNoPriv -rvn iso -wvn iso -nvn iso
-manage snmp access create InitialReadOnly SNMPv1 noAuthNoPriv -rvn ReadOnlyView
-manage snmp access create initial SNMPv2c noAuthNoPriv -rvn iso -wvn iso -nvn iso
-manage snmp access create InitialReadOnly SNMPv2c noAuthNoPriv -rvn ReadOnlyView
-manage snmp access create initial UserBased authPriv -rvn iso -wvn iso -nvn iso
-manage snmp access create InitialReadOnly UserBased authPriv -rvn ReadOnlyView
-manage snmp views create iso 1
-manage snmp views create ReadOnlyView 1
-manage snmp views create ReadOnlyView 1.3.6.1.4.1.89.2.7.2 -cm excluded
-manage snmp views create ReadOnlyView 1.3.6.1.6.3.18.1.1 -cm excluded
-manage snmp views create ReadOnlyView 1.3.6.1.6.3.15.1.2.2 -cm excluded
-manage snmp views create ReadOnlyView 1.3.6.1.4.1.89.35.1.61 -cm excluded
-manage snmp views create ReadOnlyView 1.3.6.1.6.3.16.1.2 -cm excluded
-manage snmp views create ReadOnlyView 1.3.6.1.6.3.16.1.4 -cm excluded
-manage snmp views create ReadOnlyView 1.3.6.1.6.3.16.1.5 -cm excluded
-manage snmp notify create allTraps -ta v3Traps
-manage snmp global engine-id set 80000059030003b2ba6c00
-manage snmp users create radware -cf 0.0 -ap MD5 -akc ed8ef385bbcfe5aaeeb4694ff4c3c246 -pp DES -pkc ed8ef385bbcfe5aaeeb4694ff4c3c246
-manage snmp target-address create Vision-V1-10.100.64.145 -a 10.100.64.145-162 -tl v3Traps -p Vision-V1-10.100.64.145
-manage snmp target-address create Vision-V1-10.101.111.201 -a 10.101.111.201-162 -tl v3Traps -p Vision-V1-10.101.111.201
-manage snmp target-parameters create snmpconfig-1 -d SNMPv1 -sm SNMPv1 -sn snmpconfig -sl noAuthNoPriv
-manage snmp target-parameters create Visionv2c -d SNMPv2c -sm SNMPv2c -sn snmpconfig -sl noAuthNoPriv
-manage snmp target-parameters create Vision-V1-10.100.64.145 -d SNMPv1 -sm SNMPv1 -sn snmpconfig -sl noAuthNoPriv
-manage snmp target-parameters create Vision-V1-10.101.111.201 -d SNMPv1 -sm SNMPv1 -sn snmpconfig -sl noAuthNoPriv
-manage snmp community create snmpconfig -n snmpconfig -sn snmpconfig
-manage snmp community create public -n public -sn public
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
 services auditing status set Enabled
 dp out-of-state profiles create Default_RWD_report -rs info -a "Report Only"
 dp out-of-state profiles create Default_RWD_block -ack disable -rs info
